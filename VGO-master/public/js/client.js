@@ -1590,7 +1590,7 @@ const blockColors = [
     { color: 'gray', url: 'https://via.placeholder.com/100x100/cccccc', name: 'Common Gray NFT' },
     { color: 'blue', url: 'https://via.placeholder.com/100x100/0000ff', name: 'Rare Blue NFT' },
     { color: 'green', url: 'https://via.placeholder.com/100x100/00ff00', name: 'Epic Green NFT' },
-    { color: 'red', url: 'https://via.placeholder.com/100x100/ff0000', name: 'Legendary Red NFT' }
+    { color: 'red', url: 'https://i.postimg.cc/QMzgTw1q/image.png', name: 'Legendary Red NFT' }
 ];
 
 function populateInitialItems(count = 50, specialItemCount = 5) {
