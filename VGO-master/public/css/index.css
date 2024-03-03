@@ -2,6 +2,54 @@ accountTitleTextbody {
     background-color: #21252b;
 }
 
+#balanceDisplay {
+    padding-top: 20px;
+    text-align: center;
+}
+#itemNameDisplay{
+    text-align: center;
+}
+#roulette {
+    width: auto;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #selectionLine {
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background-color: red;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .items {
+    display: flex;
+    height: 100%;
+    position: relative;
+    /* Remove or disable the CSS animation here */
+  }
+  
+  
+  .item {
+    width: 100px; /* Adjust based on your image size */
+    height: 100%;
+    flex-shrink: 0; /* Prevent items from shrinking */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  
+  @keyframes move {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+
 html {
     height: 100%;
     background-color: #181a1d;
@@ -83,6 +131,7 @@ html {
     font-size: 18px;
     padding-top: 50px;
 }
+
 
 .liveDivContainer {
     width: 200px;
@@ -189,14 +238,8 @@ html {
     animation: pulse 2.5s linear infinite;
 }
 
-@keyframes borderEffect {
-    0% {transform: scaleX(0)}
+  
 
-    50% {transform: scaleX(1)}
-
-    100% {transform: scaleX(0)}
-    
-}
 
 #case1button {
     color: #EDF5E1;
