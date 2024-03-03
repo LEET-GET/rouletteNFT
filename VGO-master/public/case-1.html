@@ -89,14 +89,6 @@
     
     <div class="sideContainer">
         <div class="sideStats">
-            <div class="userCountDiv">
-                <p class="userCountStat odometer "></p>
-                <p class="userCountHeader">Users Online</p>
-            </div>
-            <div class="usersRegDiv">
-                <p class="usersRegCount odometer "></p>
-                <p class="usersRegHeader">Users Registered</p>
-            </div>
             <div class="casesOpenedDiv">
                 <p class="casesOpenedCount odometer"></p>
                 <p class="casesOpenedHeader">Cases Opened</p>
@@ -193,11 +185,13 @@
         <div class="rollDiv">
             <div class="divider">
                 
-            </div>
-            <div class="rollContainer">
-                
-                
-            </div>         
+                <div id="roulette">
+                    <div id="items" class="items"></div>
+                    <div id="selectionLine"></div>
+                </div>
+                <div id="itemNameDisplay"></div>
+                <div id="balanceDisplay">Balance: 1000</div>
+                <button id="startButton">Start</button>
         </div>
         <div class="caseItemsContainer">
 
