@@ -1587,9 +1587,9 @@ function updateBalanceDisplay() {
 
 
 const blockColors = [
-    { color: 'gray', url: 'https://via.placeholder.com/100x100/cccccc', name: 'Common Gray NFT' },
-    { color: 'blue', url: 'https://via.placeholder.com/100x100/0000ff', name: 'Rare Blue NFT' },
-    { color: 'green', url: 'https://via.placeholder.com/100x100/00ff00', name: 'Epic Green NFT' },
+    { color: 'gray', url: 'https://i.postimg.cc/CxnwhGJc/photo-5422875006020471820-y.jpg', name: 'Common Gray NFT' },
+    { color: 'blue', url: 'https://i.postimg.cc/0zCL4yvB/photo-5422875006020471817-y.jpg', name: 'Rare Blue NFT' },
+    { color: 'green', url: 'https://i.postimg.cc/Qx0F9JQs/photo-5425126805834157523-y.jpg', name: 'Epic Green NFT' },
     { color: 'red', url: 'https://i.postimg.cc/QMzgTw1q/image.png', name: 'Legendary Red NFT' }
 ];
 
@@ -1680,7 +1680,25 @@ function stopRoulette() {
         balance += rewards[selectedItemName]; 
     }
     updateBalanceDisplay();
+
+        // Find the selected item's URL for the modal image
+    const selectedItem = blockColors.find(item => item.name === selectedItemName);
+    document.getElementById('itemImage').src = selectedItem.url; // Set image source
+    
+    // Show modal
+    document.getElementById('itemModal').style.display = 'block';
+    document.querySelector('body').classList.add('modal-show');
+    showModal();
+    document.getElementById('animationOverlay').style.display = 'block';
 }
+document.getElementById('closeModal').addEventListener('click', function() {
+    // Hide the modal as before
+    document.getElementById('itemModal').style.display = 'none';
+    document.querySelector('body').classList.remove('modal-show');
+    
+    // Hide GIF animations
+    document.getElementById('animationOverlay').style.display = 'none';
+});
 
 function displayCenterItemName() {
     const selectionLinePosition = document.getElementById('selectionLine').getBoundingClientRect().left + document.getElementById('selectionLine').offsetWidth / 2;
@@ -1700,13 +1718,50 @@ function displayCenterItemName() {
 
 
 
+
 function populateInitialItems(count = 20) {
     for (let i = 0; i < count; i++) {
         itemsContainer.appendChild(createItem());
     }
 }
+
 updateBalanceDisplay();
 
-startButton.addEventListener('click', startRoulette);
+function showModal() {
+    document.getElementById('itemModal').classList.add('show'); // Show the overlay
+    document.querySelector('.modal-content').classList.add('show'); // Expand the content
+    document.querySelector('body').classList.add('modal-show'); // Blur background
+}
+
+function closeModal() {
+    document.getElementById('itemModal').classList.remove('show'); // Hide the overlay
+    document.querySelector('.modal-content').classList.remove('show'); // Collapse the content
+    document.querySelector('body').classList.remove('modal-show'); // Unblur background
+}
+
+document.getElementById('closeModal').addEventListener('click', closeModal);
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('itemModal')) {
+        closeModal();
+    }
+};
+
+// Use showModal() where you need to show the modal, for example, after stopRoulette()
+
+
+document.getElementById('closeModal').addEventListener('click', function() {
+    document.getElementById('itemModal').style.display = 'none';
+    document.querySelector('body').classList.remove('modal-show');
+});
+
+window.onclick = function(event) {
+    if (event.target.className === 'modal-overlay') {
+        document.getElementById('itemModal').style.display = 'none';
+        document.querySelector('body').classList.remove('modal-show');
+    }
+};
 console.log("test");
+
+startButton.addEventListener('click', startRoulette);
 

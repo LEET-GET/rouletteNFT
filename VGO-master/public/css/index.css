@@ -2,6 +2,122 @@ accountTitleTextbody {
     background-color: #21252b;
 }
 
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 55vh;
+    top: 0;
+    content: center;
+    width: 50%; /* Full width */
+    height: 90%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 20px;
+    width: 40%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #fefefe; /* White background for the content */
+    text-align: center; /* Center the content */
+    opacity: 0; /* Start as invisible */
+    animation-fill-mode: forwards; /* Keeps the state at the end of the animation */
+}
+
+.modal-content img {
+    width: 65vh; /* Adjust image size */
+    height: auto;
+}
+
+.modal-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+/* Add this to your existing CSS for #roulette */
+#roulette, .pageContainer {
+    filter: blur(0); /* No blur by default */
+}
+
+/* Blurry background when modal is displayed */
+.modal-show #roulette, .modal-show .pageContainer {
+    filter: blur(8px);
+}
+
+/* Original styles for the modal-overlay and modal-content remain unchanged */
+
+@keyframes expandModal {
+    0% {
+        transform: scaleY(0);
+        opacity: 0; /* Start fully transparent */
+    }
+    100% {
+        transform: scaleY(1);
+        opacity: 1; /* Fully visible */
+    }
+}
+
+video {
+    background-color: transparent;
+}
+
+.modal-overlay.show {
+    display: flex; /* Changed to flex to center the modal content */
+    animation: fadeIn 0.5s;
+}
+
+.modal-content.show {
+    animation: expandModal 0.5s forwards; /* Ensures the modal expands on showing and retains its state */
+}
+
+/* Optional: Fade-in animation for the overlay background */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#animationOverlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Ensure it's above other content */
+    background-color: rgba(0,0,0,0.4); /* Optional: dark background */
+    pointer-events: none; /* Allows clicks to pass through */
+}
+
+
+.fullscreen-gif {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Cover the full screen with the GIFs */
+}
+
+/* Ensuring the modal content is above the GIFs */
+.modal-content {
+    z-index: 3; /* Higher than the animationOverlay */
+}
+
+
 #balanceDisplay {
     padding-top: 20px;
     text-align: center;
