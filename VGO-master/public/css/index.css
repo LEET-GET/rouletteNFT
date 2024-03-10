@@ -5,13 +5,13 @@ accountTitleTextbody {
 .modal-overlay {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 55vh;
+    z-index: 3; /* Sit on top */
+    left: 60vh;
     top: 0;
     content: center;
-    width: 50%; /* Full width */
+    width: 43%; /* Full width */
     height: 90%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    overflow: hidden; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
