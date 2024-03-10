@@ -76,13 +76,6 @@ $('#declineReferral').on('click', function() {
 var isEdge = !isIE && !!window.StyleMedia;
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
 
-$('.caseContainer').prepend(
-    '<button class="btn affiliateButtonNotification"> Affiliates have just been added, highest on any site, $0.25 BACK PER CASE - Thats 100% of our cut! </button>'
-)
-
-$('.pageContainer').prepend(
-    '<button class="btn affiliateButtonNotification"> Affiliates have just been added, highest on any site, $0.25 BACK PER CASE - Thats 100% of our cut! </button>'
-)
 
 $('.affiliateButtonNotification').on('click', function() {
     window.location.replace('https://www.vgoupgrade.com/affiliates');

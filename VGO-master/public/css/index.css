@@ -1095,7 +1095,7 @@ nav {
     height: 150px;
     flex: 1;
     max-height: 150px;
-    min-height: 150px;
+    min-height: 100px;
 }
 
 .rollContainer {
