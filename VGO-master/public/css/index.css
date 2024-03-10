@@ -13,6 +13,7 @@ accountTitleTextbody {
     height: 90%; /* Full height */
     overflow: hidden; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
 }
 
 .modal-content {
@@ -67,6 +68,7 @@ accountTitleTextbody {
     100% {
         transform: scaleY(1);
         opacity: 1; /* Fully visible */
+        background-color: transparent;
     }
 }
 
@@ -77,6 +79,7 @@ video {
 .modal-overlay.show {
     display: flex; /* Changed to flex to center the modal content */
     animation: fadeIn 0.5s;
+    background-color: transparent;
 }
 
 .modal-content.show {
