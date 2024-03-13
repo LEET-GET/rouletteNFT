@@ -1238,7 +1238,7 @@ $('.mainLogo').on('click', function(){
 })
 
 $('.signbutton1').on('click', function(){
-    window.location.replace('https://roulettenft.onrender.com/auth');
+    window.location.replace('https://roulettenft.onrender.com/auth1');
 })
 
 $('.mainLogo').on('click', function(){
