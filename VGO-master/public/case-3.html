@@ -6,10 +6,20 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <link href="drawables/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-        <link rel="stylesheet" href="css/index.css" type="text/css">  
+        <link rel="stylesheet" href="css/index.css" type="text/css">   
         <title> Case 3 </title>
     </head> 
     <body>
+        <div id="itemModal" class="modal-overlay">
+            <div class="modal-content">
+                <img id="itemImage" src="" alt="Awarded Item">
+                <button id="closeModal" class="modal-close"></button>
+            </div>
+        </div>
+        <div id="animationOverlay">
+            <img src="drawables/confiti.gif" alt="Fireworks" class="fullscreen-gif">
+        </div>
+        
     
 
     <div class="navbar-brand">
@@ -60,7 +70,7 @@
                 <div id="signbutton" class="navbar-item draw-bottom">
                     <div class="field is-grouped">
                         <p class="control">
-                            <a class="button" id="sign-button" href="/auth">
+                            <a class="button" id="sign-button" href="/auth/">
                                 <span class="icon">
                                     <img src="drawables/signin.png">
                                 </span>
@@ -72,6 +82,7 @@
             </div>
         </div>
     </nav>
+
     <div class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -85,7 +96,7 @@
           </section>
         </div>
     </div>
-
+    
     <div class="sideContainer">
         <div class="sideStats">
             <div class="casesOpenedDiv">
@@ -160,38 +171,37 @@
                 <p class="modalFooterContent"> If you are opening multiple items, they will be displayed here after they are opened </p>
             </div>
         </div>
-    <button id="displayShowcase" data-target="modal1" class="btn modal-trigger">Display Rewards</button>
-    <div class="casePageContainer">
+        <button id="displayShowcase" data-target="modal1" class="btn modal-trigger">Display Rewards</button>
+        <div class="casePageContainer">
             <div class="itemsInCaseCount">
                 <p class="caseItemCount"></p>
             </div>
             <div class="mainCase">
-                <p class="casetext">Weapon Case 3</p>
-                <img class="mainCasePicture mainCaseTopImg" src="https://files.opskins.media/file/vgo-img/case/weapon-case-3-300.png">
-                <img class="mainCasePicture mainCaseBottomImg" src="https://files.opskins.media/file/vgo-img/case/weapon-case-3-300.png">
+                <p class="casetext">NFT Case 3</p>
+                <img class="mainCasePicture mainCaseTopImg" src="https://www.cryptopolitan.com/wp-content/uploads/2023/09/1220.jpg">
+                <img class="mainCasePicture mainCaseBottomImg" src="https://www.cryptopolitan.com/wp-content/uploads/2023/09/1220.jpg">
                 <div class="caseOpenControls">
-                    <p class="caseOpenText">How many cases do you want open?</p>
-                    <input class="input caseInput" type="text" placeholder="0">
-                    <button id="caseopen3button" class="mainOpenCaseButton button">
+                    <div id="balanceDisplay">Balance: 1000</div>
+                    <div id="itemNameDisplay"></div>
+                    <button id="startButton" class="mainOpenCaseButton button">
                         <span class="icon">
                                 <img src="drawables/keyicon.png">
                         </span>
                         <span style="margin-left:5px">Open Case</span>
                     </button>
+
                 </div>
             </div>
         </div>
         <div class="rollDiv">
-            <div class="divider">
-                
-            </div>
-            <div class="rollContainer">
-                
-                
-            </div>
-        </div>
-        <div class="caseItemsContainer">
+                <div id="roulette">
+                    <div id="items" class="items"></div>
+                    <div id="selectionLine"></div>
+                </div>
 
+
+
+        </div>
         </div>
     </div>
     <nav class="navbar is-fixed-bottom navBottom">
@@ -201,7 +211,7 @@
         </div>
         <div class="socketConnectionDiv">
             <a id="socketConnectionHeader">
-                Socket Status:
+                status for testing:
             </a>
             <a id="socketConnectionItem">
                 

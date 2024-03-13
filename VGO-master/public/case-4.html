@@ -6,10 +6,20 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <link href="drawables/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-        <link rel="stylesheet" href="css/index.css" type="text/css">  
+        <link rel="stylesheet" href="css/index.css" type="text/css">   
         <title> Case 4 </title>
     </head> 
     <body>
+        <div id="itemModal" class="modal-overlay">
+            <div class="modal-content">
+                <img id="itemImage" src="" alt="Awarded Item">
+                <button id="closeModal" class="modal-close"></button>
+            </div>
+        </div>
+        <div id="animationOverlay">
+            <img src="drawables/confiti.gif" alt="Fireworks" class="fullscreen-gif">
+        </div>
+        
     
 
     <div class="navbar-brand">
@@ -60,7 +70,7 @@
                 <div id="signbutton" class="navbar-item draw-bottom">
                     <div class="field is-grouped">
                         <p class="control">
-                            <a class="button" id="sign-button" href="/auth">
+                            <a class="button" id="sign-button" href="/auth/">
                                 <span class="icon">
                                     <img src="drawables/signin.png">
                                 </span>
@@ -100,8 +110,8 @@
             </div>
         </div>
         <div class="chatContainer">
-                <div class="msgFadeDiv">
-                    </div>
+            <div class="msgFadeDiv">
+            </div>
             <div id="chatBox">
 
             </div>
@@ -167,32 +177,31 @@
                 <p class="caseItemCount"></p>
             </div>
             <div class="mainCase">
-                <p class="casetext">Weapon Case 4</p>
-                <img class="mainCasePicture mainCaseTopImg" src="https://files.opskins.media/file/vgo-img/case/weapon-case-4-300.png">
-                <img class="mainCasePicture mainCaseBottomImg" src="https://files.opskins.media/file/vgo-img/case/weapon-case-4-300.png">
+                <p class="casetext">NFT Case 4</p>
+                <img class="mainCasePicture mainCaseTopImg" src="https://ezway.s3.amazonaws.com/jondo/nft/nft-header-5.jpg">
+                <img class="mainCasePicture mainCaseBottomImg" src="https://ezway.s3.amazonaws.com/jondo/nft/nft-header-5.jpg">
                 <div class="caseOpenControls">
-                    <p class="caseOpenText">How many cases do you want open?</p>
-                    <input class="input caseInput" type="text" placeholder="0">
-                    <button id="caseopen4button" class="mainOpenCaseButton button">
+                    <div id="balanceDisplay">Balance: 1000</div>
+                    <div id="itemNameDisplay"></div>
+                    <button id="startButton" class="mainOpenCaseButton button">
                         <span class="icon">
                                 <img src="drawables/keyicon.png">
                         </span>
                         <span style="margin-left:5px">Open Case</span>
                     </button>
+
                 </div>
             </div>
         </div>
         <div class="rollDiv">
-            <div class="divider">
-                
-            </div>
-            <div class="rollContainer">
-                
-                
-            </div>         
-        </div>
-        <div class="caseItemsContainer">
+                <div id="roulette">
+                    <div id="items" class="items"></div>
+                    <div id="selectionLine"></div>
+                </div>
 
+
+
+        </div>
         </div>
     </div>
     <nav class="navbar is-fixed-bottom navBottom">
@@ -202,7 +211,7 @@
         </div>
         <div class="socketConnectionDiv">
             <a id="socketConnectionHeader">
-                Socket Status:
+                status for testing:
             </a>
             <a id="socketConnectionItem">
                 
