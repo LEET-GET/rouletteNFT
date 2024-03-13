@@ -1205,7 +1205,7 @@ passport.deserializeUser(function (obj, done) {
 });
 
 passport.use(new SteamStrategy({
-    returnURL: 'https://roulettenft.onrender.com/auth/steam/return',
+    returnURL: 'https://roulettenft.onrender.com/auth123',
     realm: 'https://roulettenft.onrender.com/',
     apiKey: config.steamKey,
 }, function (identifier, profile, done) {
@@ -1213,12 +1213,12 @@ passport.use(new SteamStrategy({
     done(false, profile);
 }));
 
-app.get('/auth/callback', passport.authenticate('steam'), function (req, res) {
+app.get('/auth2/callback', passport.authenticate('steam'), function (req, res) {
     // The request will be redirected to Steam for authentication, so
     // this function will not be called.
 });
 
-app.get('/auth/callback', passport.authenticate('steam', { failureRedirect: '/login' }), function (req, res) {
+app.get('/auth3/callback', passport.authenticate('steam', { failureRedirect: '/login' }), function (req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
     console.log("logged in successfully");

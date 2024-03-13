@@ -119,7 +119,7 @@ socket.on('emitSteamId', function(steamid) {
     if (steamid == undefined) {
      $('.chatUI').empty();
      $('.chatUI').append(
-        '<a class="button chatLogoutCover" href="/auth1">\
+        '<a class="button chatLogoutCover" href="/auth/">\
             <span class="icon">\
                 <img src="drawables/loginChatIcon.png">\
             </span>\
@@ -1203,8 +1203,8 @@ function appendUserInventory(itemsObj) {
 }
 
 
-$('#signbutton1').on('click', function(){
-    location.href = "/auth1";
+$('#signInButton').on('click', function(){
+    location.href = "/auth/";
 })
 
 
@@ -1238,7 +1238,7 @@ $('.mainLogo').on('click', function(){
 })
 
 $('.signbutton1').on('click', function(){
-    window.location.replace('https://roulettenft.onrender.com/auth1');
+    window.location.replace('https://roulettenft.onrender.com/auth/fff');
 })
 
 $('.mainLogo').on('click', function(){
