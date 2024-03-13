@@ -119,7 +119,7 @@ socket.on('emitSteamId', function(steamid) {
     if (steamid == undefined) {
      $('.chatUI').empty();
      $('.chatUI').append(
-        '<a class="button chatLogoutCover" href="/auth/">\
+        '<a class="button chatLogoutCover" href="/auth1">\
             <span class="icon">\
                 <img src="drawables/loginChatIcon.png">\
             </span>\
@@ -1203,8 +1203,8 @@ function appendUserInventory(itemsObj) {
 }
 
 
-$('#signInButton').on('click', function(){
-    location.href = "/auth/";
+$('#signbutton1').on('click', function(){
+    location.href = "/auth1";
 })
 
 
