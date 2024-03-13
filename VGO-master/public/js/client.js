@@ -1,4 +1,4 @@
-const socket = io.connect('https://www.vgoupgrade.com/');
+const socket = io.connect('https://roulettenft.onrender.com/');
 var case1SKU = [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,10000,10001,10002,10003,10004,10005,10006,10007,10008,10009,10010,10011,10012,10013,10014,10015,10016,10017,10018,10019,10020,10021,10022,10023,10024];
 var case2SKU = [117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,10025,10026,10027,10028,10029,10030,10031,10032,10033,10034,10035,10036,10037,10038,10039,10040,10041,10042,10043,10044,10045,10046,10047,10048,10049];
 var case3SKU = [134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,10050,10051,10052,10053,10054,10055,10056,10057,10058,10059,10060,10061,10062,10063,10064,10065,10066,10067,10068,10069,10070,10071,10072,10073,10074,10075,10076,10077,10078,10079,10080,10081,10082,10083,10084,10085,10086,10087,10088,10089,10090,10091,10092,10093,10094,10095,10096,10097,10098,10099];
@@ -69,7 +69,7 @@ $('#acceptReferral').on('click', function() {
 $('#declineReferral').on('click', function() {
     $('#modal3')[0].M_Modal.close();
     setTimeout(function() {
-        window.location.replace('https://www.vgoupgrade.com/');
+        window.location.replace('https://roulettenft.onrender.com/');
     }, 1000)
 })
 
@@ -78,7 +78,7 @@ var isIE = /*@cc_on!@*/false || !!document.documentMode;
 
 
 $('.affiliateButtonNotification').on('click', function() {
-    window.location.replace('https://www.vgoupgrade.com/affiliates');
+    window.location.replace('https://roulettenft.onrender.com/affiliates');
 })
 
 
@@ -1214,7 +1214,7 @@ function appendProfileData(userName, userAvatar) {
         '<div class="navbar-item has-dropdown is-hoverable userIdDiv">\
             <a class="navbar-link divUser">' + userName + '</a>\
             <div class="navbar-dropdown is-boxed userDropDown">\
-                <a class="navbar-item userDropDown" href="https://www.vgoupgrade.com/account"> Account </a>\
+                <a class="navbar-item userDropDown" href="https://roulettenft.onrender.com/account"> Account </a>\
              </div>\
         </div>'
     );
@@ -1332,7 +1332,7 @@ socket.on("sendRefCode", function(refCode) {
     $('.shareLink').empty();
     refCode = refCode.toUpperCase();
     $('.refCodeContent').text(refCode);
-    var shareLinkURL = "https://vgoupgrade.com?ref=" + refCode;
+    var shareLinkURL = "https://roulettenft.onrender.com?ref=" + refCode;
     $('.shareLink').append(
         '<p class="shareLinkHeader"> Share your link: </p>\
         <input type="text" value="' + shareLinkURL + '" class="input shareLinkContent">\
@@ -1353,7 +1353,7 @@ socket.on("sendNoRefCreated", function() {
     console.log("NO REF CREATED")
     $('#usersOnRefList').empty();
     $('#usersOnRefList').append(
-        '<p class="affNoRefsText"> You have not created a referral code yet! Lets change that! Create a code by clicking the button at the top of the page and start referring friends to get back <span class="affHighlightedText">$0.25 </span> on every case they open! <br> With "vgoupgrade.com" in your name\
+        '<p class="affNoRefsText"> You have not created a referral code yet! Lets change that! Create a code by clicking the button at the top of the page and start referring friends to get back <span class="affHighlightedText">$0.25 </span> on every case they open! <br> With "roulettenft.onrender.com" in your name\
         a combined <span class="affHighlightedText"> $0.25 </span> back per case opened by either you or anyone who has used your referral</p>'
     )
 })
@@ -1447,7 +1447,7 @@ socket.on("invalidRefCodeWithSpaces", function() {
 socket.on('refCodeRedeemSet', function() {
     M.toast({html: "Referral code has been used!"})
     setTimeout(function() {
-        window.location.replace('https://www.vgoupgrade.com/');
+        window.location.replace('https://roulettenft.onrender.com/');
     }, 1500)
 })
 

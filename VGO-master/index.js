@@ -1205,8 +1205,8 @@ passport.deserializeUser(function (obj, done) {
 });
 
 passport.use(new SteamStrategy({
-    returnURL: 'https://www.vgoupgrade.com/auth/steam/return',
-    realm: 'https://www.vgoupgrade.com/',
+    returnURL: 'https://roulettenft.onrender.com/auth/steam/return',
+    realm: 'https://roulettenft.onrender.com/',
     apiKey: config.steamKey,
 }, function (identifier, profile, done) {
     console.log("profile");
