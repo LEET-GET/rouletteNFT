@@ -1237,6 +1237,14 @@ $('.mainLogo').on('click', function(){
     window.location.replace('https://roulettenft.onrender.com/');
 })
 
+$('.signbutton1').on('click', function(){
+    window.location.replace('https://roulettenft.onrender.com/auth');
+})
+
+$('.mainLogo').on('click', function(){
+    window.location.replace('https://roulettenft.onrender.com/');
+})
+
 $('#case1button').on('click', function(){
     window.location.replace('https://roulettenft.onrender.com/case-1');
 })
