@@ -1,12 +1,6 @@
-.accountTitleTextbody {
-    background-color: #ffcc00;
+accountTitleTextbody {
+    background-color: #21252b;
 }
-
-@media screen and (min-width: 1088px) {
-    .navbar.is-transparent a.navbar-item:hover {
-        background-color: #ffcc00;
-    }
-    }
 
 .modal-overlay {
     display: none; /* Hidden by default */
@@ -267,7 +261,7 @@ html {
     top: 70px;
     border-right: 1px solid #ffffff79;
     border-bottom: 1px solid #ffffff79;
-    background-color: #ffcc00;
+    background-color: #1a1e25;
     border-left: 1px solid #ffffff79;
     padding-left: 2px;
     padding-right: 2px;
@@ -326,7 +320,7 @@ html {
 
 .border-animation:after {
     content: '';
-    border-bottom: solid 3px #1a1e24;  
+    border-bottom: solid 3px #29c78c;  
     transform: scaleX(0);  
     transition: transform 250ms ease-in-out;
     bottom: 0;
@@ -372,7 +366,7 @@ html {
     height: 45px;
     border-bottom: 3px solid #1f6148 !important;
     border-radius: 3px;
-    background: #1a1e25;
+    background: #2ac78b;
     border: 0;
     align-self: center;
     width: 90%;
@@ -390,7 +384,7 @@ html {
     height: 45px;
     border-bottom: 3px solid #1f6148 !important;
     border-radius: 3px;
-    background: #1a1e25;
+    background: #2ac78b;
     border: 0;
     align-self: center;
     width: 90%;
@@ -408,7 +402,7 @@ html {
     height: 45px;
     border-bottom: 3px solid #1f6148 !important;
     border-radius: 3px;
-    background: #1a1e25;
+    background: #2ac78b;
     border: 0;
     align-self: center;
     width: 90%;
@@ -426,7 +420,7 @@ html {
     height: 45px;
     border-bottom: 3px solid #1f6148 !important;
     border-radius: 3px;
-    background: #1a1e25;
+    background: #2ac78b;
     border: 0;
     align-self: center;
     width: 90%;
@@ -446,6 +440,7 @@ html {
 
 nav {
     height:70px;
+    background-color: #1a1e24 !important;
 }
 
 .buttondiv {
@@ -499,23 +494,16 @@ nav {
 }
 
 .navbar-item:hover {
-    border-bottom: #ffcc00 2px;
+    border-bottom: #29c78c 2px;
     border-bottom-style: inset;
-    color: #ffcc00 !important;
+    color: #29c78c !important;
 }
-
-.navbar-brand a.navbar-item:hover {
-    background-color: #ffcc00;
-}
-
-
 
 .navBottom {
     min-height: 2rem;
     height: 30px;
     border-top: 1px solid #ffffff79;
     z-index: 999999999999 !important;
-    background-color: #ffcc00    ;
 }
 
 .is-fixed-top {
@@ -804,7 +792,7 @@ nav {
     justify-content: space-between;
     border: #8b8c90 1px solid;
     border-radius: 25px;
-    background-color: #ffcc00;
+    background-color: #1a1e25;
     transition: all 5s linear;
     height: 500px;
     width: 360px;
@@ -837,7 +825,7 @@ nav {
     width: 100%;
     font-family: 'stellar-light';
     font-size: 18px;
-    background-color: #1a1e25;
+    background-color: #2ac78b;
     border-color: #1a1e24;
     color: #EDF5E1;
     border: 1px solid #edf4de;
@@ -939,7 +927,7 @@ nav {
 .faqText {
     font-size: 15px;
     font-family: 'stellar-light';
-    color: #1a1e24;
+    color: #29c78c;
     margin-left: auto;
     margin-right: auto;
 }
@@ -1015,7 +1003,7 @@ nav {
 }
 
 .openedVGOItem {
-    background-color: #1a1e24;
+    background-color: #29c78c;
     border-radius: 10px;
     margin-left: 25px;
     margin-right: 25px;
@@ -1450,7 +1438,7 @@ nav {
       left: 5px;
       font-family: "stellar";
       font-size: 15px;
-      color: #1a1e24;
+      color: #EDF5E1;
       top: 5px;
       width: 100%;
       justify-content: center;
@@ -1469,7 +1457,7 @@ nav {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: #ffcc00;
+      background-color: #1a1e25;
       overflow: hidden;
       border-right: 1px solid #ffffff79;
       border-bottom: 1px solid #ffffff79;
@@ -1529,9 +1517,9 @@ nav {
       margin-bottom: auto;
       background-color: #1a1f26 !important;
       border-bottom: 1px solid #dbdbdb7a;
-      border-right: 1px solid #ffcc00;
-      border-left: 1px solid #ffcc00;
-      border-top: 1px solid #ffcc00;
+      border-right: 1px solid #1a1e25;
+      border-left: 1px solid #1a1e25;
+      border-top: 1px solid #1a1e25;
       color: #ffffff;
   }
 
@@ -1591,7 +1579,7 @@ nav {
   }
 
   .userInvValue {
-      color: #1a1e24;
+      color: #06ffa2;
       font-family: "Stellar";
       font-size: 22px;
   }
@@ -1620,7 +1608,7 @@ nav {
   }
 
   .messageDiv {
-      background: linear-gradient(0.25turn, #ffcc00, #24282f, #ffcc00);
+      background: linear-gradient(0.25turn, #1a1e25, #24282f, #1a1e25);
       padding-right: 5px;
       padding-top: 5px;
       display: flex;
@@ -1655,7 +1643,7 @@ nav {
   }
   
   .spinner > div {
-    background-color: #1a1e24;
+    background-color: #29c78c;
     width: 2px;
     display: flex;
     flex-direction: column;
@@ -1712,7 +1700,7 @@ nav {
    }
 
    #socketConnectionHeader {
-    color: #1a1e24;
+    color: #EDF5E1;
     font-family: "stellar";
     font-size: 20px;
     position: relative;
@@ -1746,13 +1734,13 @@ nav {
 
     ::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background: #1a1e24;
+        background: #29c78c;
     }
 
     .chatLogoutCover {
         height: 35px;
         font-size: 25px;
-        background-color: #1a1e24;
+        background-color: #29c78c;
         color: #edf5e1; 
         font-family: "stellar-light";
         margin-left: auto;
@@ -1788,7 +1776,7 @@ nav {
     }
 
     .userCountStat {
-        color: #1a1e24;
+        color: #06ffa2;
         font-size: 20px;
         overflow: visible;
     }
@@ -1810,7 +1798,7 @@ nav {
     }
 
     .chatUIAvatar {
-        border: 1px solid #1a1e24;
+        border: 1px solid #29c78c9c;
         border-radius: 25px;
         position: relative;
     }
@@ -1889,7 +1877,7 @@ nav {
     .twitterNavBarText {
         position: relative;
         font-size: 20px;
-        color: #1a1e24;
+        color: #29c78c;
         font-family: "stellar";
         width: 120px;
         bottom: 17px;
@@ -2054,7 +2042,7 @@ nav {
     }
 
     .usersRegCount {
-        color: #1a1e24;
+        color: #06ffa2;
         font-size: 20px;
     }
 
@@ -2069,12 +2057,12 @@ nav {
         padding-top: 10px;
         padding-left: 15px;
         padding-right: 15px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.259);
+        border-bottom: 1px solid #ffffff42;
         overflow: hidden;
     }
 
     .casesOpenedHeader {
-        color: #1a1e25;
+        color: #EDF5E1;
         margin-top: auto;
         margin-bottom: auto;
         padding-left: 10px;
@@ -2084,7 +2072,7 @@ nav {
     }
 
     .casesOpenedCount {
-        color: #1a1e24;
+        color: #06ffa2;
         font-size: 20px;
         transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
@@ -2104,7 +2092,7 @@ nav {
     }
 
     .unboxValueHeader {
-        color: #1a1e25;
+        color: #EDF5E1;
         margin-top: auto;
         margin-bottom: auto;
         padding-left: 10px;
@@ -2114,14 +2102,14 @@ nav {
     }
 
     .unboxValueCount {
-        color: #1a1e24;
+        color: #06ffa2;
         font-size: 20px;
         left: 30px !important;
         position: absolute !important;
     }
 
     .valueSign {
-        color: #1a1e24;
+        color: #29c78c;
         position: relative;
         font-size: 20px;
         bottom: 5px;
@@ -2522,7 +2510,7 @@ nav {
     }
 
     .refBox {
-        background: #ffcc00;
+        background: #1a1e25;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
@@ -2825,7 +2813,7 @@ nav {
         top: 0;
         pointer-events: none;
         visibility: hidden;
-        background-color: #ffcc00;
+        background-color: #1a1e25;
         font-family: "stellar-light";
         font-size: 0.8em;
         border-radius: 5px;
@@ -2907,7 +2895,7 @@ nav {
         width: 0px;
         border-radius: 10px;
         z-index: 99999;
-        background-color: #ffcc00;
+        background-color: #1a1e25;
     }
 
     .topVGOItems {
@@ -2976,11 +2964,11 @@ nav {
     }
 
     #dropdown1 {
-        background-color: #ffcc00;
+        background-color: #1a1e25;
     }
 
     #dropdown2 {
-        background-color: #ffcc00;
+        background-color: #1a1e25;
     }
 
     .dropDownText {
