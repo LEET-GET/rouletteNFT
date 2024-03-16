@@ -1519,7 +1519,7 @@ function printCaseItems(caseObj, caseSKU, callback) {
     });
 
     appendItems(sortedArray);
-} 
+}
 
 function appendItems(array) {
     $('.caseitem').remove();
@@ -1692,6 +1692,7 @@ function stopRoulette() {
     showModal();
     document.getElementById('animationOverlay').style.display = 'block';
 }
+
 document.getElementById('closeModal').addEventListener('click', function() {
     // Hide the modal as before
     document.getElementById('itemModal').style.display = 'none';
