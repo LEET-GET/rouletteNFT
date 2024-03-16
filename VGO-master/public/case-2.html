@@ -1860,8 +1860,10 @@ function createItem() {
         selectedItem = blockColors[4];
     } else if (rarityRoll < 85) {
         selectedItem = blockColors[5];
-    } else {
+    } else if (rarityRoll < 95) {
         selectedItem = blockColors[6];
+    } else {
+        selectedItem = blockColors[7];
     }
 
     item.style.backgroundImage = `url(${selectedItem.url})`;
