@@ -7,7 +7,10 @@
         background-color: #ffcc00;
     }
     }
-
+.body {
+    background-color: #ffcc00;
+    color: #ffcc00;
+}
 .modal-overlay {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
