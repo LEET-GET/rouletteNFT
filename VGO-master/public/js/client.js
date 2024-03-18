@@ -1749,7 +1749,6 @@ window.onclick = function(event) {
     }
 };
 
-// Use showModal() where you need to show the modal, for example, after stopRoulette()
 
 
 document.getElementById('closeModal').addEventListener('click', function() {

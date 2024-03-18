@@ -1960,11 +1960,9 @@ function stopRoulette() {
     }
     updateBalanceDisplay();
 
-        // Find the selected item's URL for the modal image
     const selectedItem = blockColors.find(item => item.name === selectedItemName);
-    document.getElementById('itemImage').src = selectedItem.url; // Set image source
+    document.getElementById('itemImage').src = selectedItem.url; 
     
-    // Show modal
     document.getElementById('itemModal').style.display = 'block';
     document.querySelector('body').classList.add('modal-show');
     showModal();
@@ -2027,7 +2025,6 @@ window.onclick = function(event) {
     }
 };
 
-// Use showModal() where you need to show the modal, for example, after stopRoulette()
 
 
 document.getElementById('closeModal').addEventListener('click', function() {
