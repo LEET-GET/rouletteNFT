@@ -1813,6 +1813,78 @@ const rewards = {
     'Vincent van Gogh 8': 777,
 };
 
+const imageUrls = [
+    "https://i.postimg.cc/C1YYBMRJ/photo-5449885651618094277-y.jpg",
+    "https://i.postimg.cc/W4vxSWs1/photo-5449885651618094278-y.jpg",
+    "https://i.postimg.cc/C1YYBMRJ/photo-5449885651618094277-y.jpg",
+    "https://i.postimg.cc/W4vxSWs1/photo-5449885651618094278-y.jpg",
+    "https://i.postimg.cc/h45wNPKw/photo-5449885651618094280-y.jpg",
+    "https://i.postimg.cc/Z5318ttQ/photo-5449885651618094281-y.jpg",
+    "https://i.postimg.cc/Zn2MNjfZ/photo-5449885651618094282-y.jpg",
+    "https://i.postimg.cc/wBgbD1kt/photo-5449885651618094283-y.jpg",
+    "https://i.postimg.cc/MpkLKPMm/photo-5449885651618094286-y.jpg",
+    "https://i.postimg.cc/3RTKkkYf/photo-5449885651618094260-y.jpg",
+    "https://i.postimg.cc/LszSFmLt/photo-5449885651618094261-y.jpg",
+    "https://i.postimg.cc/9MChWsYv/photo-5449885651618094262-y.jpg",
+    "https://i.postimg.cc/Yqhwq6Qq/photo-5449885651618094263-y.jpg",
+    "https://i.postimg.cc/Bbw9Bbf0/photo-5449885651618094264-y.jpg",
+    "https://i.postimg.cc/9Mbjz1xz/photo-5449885651618094265-y.jpg",
+    "https://i.postimg.cc/bvXP5ZDY/photo-5449885651618094266-y.jpg",
+    "https://i.postimg.cc/cHRLhQFN/photo-5449885651618094267-y.jpg",
+    "https://i.postimg.cc/C5fHcMR8/photo-5445383400610452767-y.jpg",
+    "https://i.postimg.cc/L4qrczft/photo-5445383400610452774-y.jpg",
+    "https://i.postimg.cc/Gmz782G3/photo-5445383400610452768-y.jpg",
+    "https://i.postimg.cc/TPYsCmfW/photo-5445383400610452775-y.jpg",
+    "https://i.postimg.cc/nrvTHcnJ/photo-5445383400610452770-y.jpg",
+    "https://i.postimg.cc/CLsJX1vC/photo-5445383400610452771-y.jpg",
+    "https://i.postimg.cc/NFWbt93b/photo-5445383400610452764-y.jpg",
+    "https://i.postimg.cc/VNGZLqHW/photo-5449895478503266130-y.jpg",
+    "https://i.postimg.cc/0yt0p8d8/photo-5452147278316950899-y.jpg",
+    "https://i.postimg.cc/zfVS790T/photo-5452147278316950926-y.jpg",
+    "https://i.postimg.cc/9QXBR498/photo-5452147278316950927-y.jpg",
+    "https://i.postimg.cc/BZDpdfsg/photo-5452147278316950928-y.jpg",
+    "https://i.postimg.cc/fbr5hwJH/photo-5452147278316950929-y.jpg",
+    "https://i.postimg.cc/wMhkJLFP/photo-5452147278316950930-y.jpg",
+    "https://i.postimg.cc/BbWgXM5H/photo-5452147278316950931-y.jpg",
+    "https://i.postimg.cc/PxvyXBDd/photo-5452147278316950932-y.jpg",
+    "https://i.postimg.cc/DzZ5DWyJ/photo-5452147278316950934-y.jpg",
+    "https://i.postimg.cc/sg3TY6kJ/photo-5452147278316950935-y.jpg",
+    "https://i.postimg.cc/c4y9H4T2/photo-5452147278316950936-y.jpg"
+];
+
+const liveItemsContainer = document.querySelector('.liveItemsContainer');
+
+function addImage() {
+    // Select a random image from the array
+    const imageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+    
+    // Create an img element and set its src to the imageUrl
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    
+    // Append the img to the liveItemsContainer
+    liveItemsContainer.appendChild(img);
+    
+    // Scroll to the bottom of the container to show the newest image
+    liveItemsContainer.scrollTop = liveItemsContainer.scrollHeight;
+}
+
+// Function to generate a random interval between 10 to 30 seconds
+function getRandomInterval() {
+    return Math.random() * (30000 - 10000) + 10000; // 10,000 ms to 30,000 ms
+}
+
+// Recursive function to add images at random intervals
+function scheduleNextImage() {
+    setTimeout(() => {
+        addImage();
+        scheduleNextImage(); // Schedule the next call
+    }, getRandomInterval());
+}
+
+// Start the cycle with the first image also waiting for a random interval
+scheduleNextImage();
+
 function updateBalanceDisplay() {
     document.getElementById('balanceDisplay').textContent = `Balance: ${balance}`;
 }
