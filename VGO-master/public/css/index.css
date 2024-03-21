@@ -1321,7 +1321,7 @@ nav {
   .indexPageContainer {
       position: absolute;
       right: 200px;
-      left: 20%;
+      left: 0%;
       height: calc(100% - 100px);
       display: flex;
       flex-direction: column;

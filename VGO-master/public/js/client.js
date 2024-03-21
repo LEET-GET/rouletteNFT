@@ -1640,8 +1640,9 @@ function addImage() {
 
 // Function to generate a random interval between 10 to 30 seconds
 function getRandomInterval() {
-    return Math.random() * (30000 - 10000) + 10000; // 10,000 ms to 30,000 ms
+    return Math.random() * (2000 - 1000) + 100; // 1,000 ms to 5,000 ms
 }
+
 
 // Recursive function to add images at random intervals
 function scheduleNextImage() {
