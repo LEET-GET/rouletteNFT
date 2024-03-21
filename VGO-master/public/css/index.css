@@ -1339,7 +1339,7 @@ nav {
   .pageContainer {
     height: calc(100% - 100px);
     position: absolute;
-    left: 20%;
+    left: 0%;
     right: 200px;
     border-left: 1px solid #ffffff79;
     border-right: 1px solid #ffffff79;
@@ -1488,13 +1488,13 @@ nav {
       position: absolute;
       margin-top: 0px;
       left: 0;
-      width: 20%;
+      width: 0%;
       top: 70px;
       bottom: 32px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-color: #ffcc00;
+      background-color: #1a1e24;
       overflow: hidden;
       border-right: 1px solid #ffffff79;
       border-bottom: 1px solid #ffffff79;
