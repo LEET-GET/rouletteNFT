@@ -820,6 +820,28 @@ nav {
     top: 65;
 }
 
+.liveItemsContainer img {
+    display: block; /* Stack images vertically */
+    margin-bottom: 20px; /* Space between images */
+    width: 60%; /* Adjust width as needed */
+    max-width: 200px; /* Adjust max width as needed */
+    height: auto;
+    margin-left: auto; /* Center the image */
+    margin-right: auto; /* Center the image */
+    filter: drop-shadow(2px 2px 5px black); /* Apply shadow for glowing effect */
+}
+
+
+.liveItemsContainer {
+    display: flex; /* Enable flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    overflow-y: auto; /* Allow vertical scrolling */
+    max-height: 90vh; /* Adjust height as needed */
+}
+
+
+
 .mainCaseTopImg {
     z-index: 10;
     height: 300px;
