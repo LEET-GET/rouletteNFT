@@ -1,5 +1,107 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/odometer@0.4.8/themes/odometer-theme-default.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <link href="drawables/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link rel="stylesheet" href="css/index.css" type="text/css">  
+        <title> Authorization </title>
+    </head> 
     <body> 
         <h1> Hellow World!</h1>
+        <div class="form-container">
+            <!-- Registration Form -->
+            <div class="register-form">
+              <h2>Register</h2>
+              <form id="registrationForm">
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Password" required>
+                <button type="button" id="registerBtn">Register</button>
+            </form>
+            </div>
+          
+            <!-- Login Form -->
+            <div class="login-form">
+              <h2>Login</h2>
+              <form id="loginForm">
+                <input type="email" id="loginUsername" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="button" id="loginBtn">Login</button>
+              </form>
+            </div>
+          </div>
+          
     </body>
+    <script>
+        document.getElementById('registerBtn').addEventListener('click', function() {
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
+  
+  // Define the data to be sent
+  const postData = {
+    email: email,
+    password: password
+  };
+
+  // Define the request options
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'accept': 'application/json',
+      // Update the CSRF token as per your requirement or manage it dynamically
+      'X-CSRFToken': '62odXoN6OfJpcSnnzeVmpiozvkLjFPjUdiXkFgJHtKButPjtGCdVJLGBpLz0TNSR'
+    },
+    body: JSON.stringify(postData)
+  };
+
+  // Perform the fetch request
+  fetch('http://209.38.248.1:8001/user/register/', requestOptions)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+});
+
+document.getElementById('loginBtn').addEventListener('click', function() {
+  const username = document.getElementById('loginUsername').value;
+  const password = document.getElementById('loginPassword').value;
+  
+  const loginData = {
+    username: username,
+    password: password
+  };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'accept': 'application/json',
+      'X-CSRFToken': '62odXoN6OfJpcSnnzeVmpiozvkLjFPjUdiXkFgJHtKButPjtGCdVJLGBpLz0TNSR'
+    },
+    body: JSON.stringify(loginData)
+  };
+
+  fetch('http://209.38.248.1:8001/user/login/', requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('No active account found with the given credentials');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Login Successful:', data);
+      // Store tokens in localStorage or sessionStorage
+      localStorage.setItem('refreshToken', data.refresh);
+      localStorage.setItem('accessToken', data.access);
+      // Redirect user or update UI as logged in
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+});
+
+
+    </script>
 </html>

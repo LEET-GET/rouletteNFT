@@ -1912,27 +1912,33 @@ function populateInitialItems(count = 50, specialItemCount = 5) {
 function createItem() {
     const item = document.createElement('div');
     item.classList.add('item');
-    
-    const rarityRoll = Math.random() * 100;
+
+    // Calculate inverted weights based on rewards
+    const maxReward = Math.max(...Object.values(rewards));
+    let totalWeight = 0;
+    const invertedWeights = blockColors.map(card => {
+        const invertedWeight = maxReward + 1 - rewards[card.name];
+        totalWeight += invertedWeight;
+        return invertedWeight;
+    });
+
+    let threshold = Math.random() * totalWeight;
     let selectedItem;
 
-    if (rarityRoll < 5) {
-        selectedItem = rarityRoll < 2.5 ? blockColors[0] : blockColors[1];
-    } else if (rarityRoll < 25) {
-        selectedItem = blockColors[2];
-    } else if (rarityRoll < 45) {
-        selectedItem = blockColors[3];
-    } else if (rarityRoll < 65) {
-        selectedItem = blockColors[4];
-    } else if (rarityRoll < 85) {
-        selectedItem = blockColors[5];
-    } else {
-        selectedItem = blockColors[6];
+    for (let i = 0; i < blockColors.length; i++) {
+        const card = blockColors[i];
+        if (threshold < invertedWeights[i]) {
+            selectedItem = card;
+            break;
+        }
+        threshold -= invertedWeights[i];
     }
 
-    item.style.backgroundImage = `url(${selectedItem.url})`;
-    item.dataset.name = selectedItem.name;
-    
+    if (selectedItem) {
+        item.style.backgroundImage = `url(${selectedItem.url})`;
+        item.dataset.name = selectedItem.name;
+    }
+
     return item;
 }
 
