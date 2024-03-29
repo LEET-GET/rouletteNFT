@@ -1911,32 +1911,32 @@ function populateInitialItems(count = 50, specialItemCount = 5) {
     }
 }
 
+const commonImageUrl = "https://i.postimg.cc/rmV1cYNR/letters-abc-alphabet-journal-font.jpg"; // New common image
+
 function createItem() {
     const item = document.createElement('div');
     item.classList.add('item');
 
-    // Calculate inverted weights based on rewards
-    const maxReward = Math.max(...Object.values(rewards));
-    let totalWeight = 0;
-    const invertedWeights = blockColors.map(card => {
-        const invertedWeight = maxReward + 1 - rewards[card.name];
-        totalWeight += invertedWeight;
-        return invertedWeight;
-    });
+    // 90% chance to select the new common image
+    if (Math.random() < 0.9) {
+        item.style.backgroundImage = `url(${commonImageUrl})`;
+        item.dataset.name = "Common Image";
+    } else {
+        // Original selection logic for other images, with adjusted probabilities
+        let totalWeight = Object.values(rewards).reduce((acc, reward) => acc + reward, 0);
+        let randomValue = Math.random() * totalWeight;
+        let selectedName;
 
-    let threshold = Math.random() * totalWeight;
-    let selectedItem;
-
-    for (let i = 0; i < blockColors.length; i++) {
-        const card = blockColors[i];
-        if (threshold < invertedWeights[i]) {
-            selectedItem = card;
-            break;
+        for (const [name, reward] of Object.entries(rewards)) {
+            if (randomValue < reward) {
+                selectedName = name;
+                break;
+            }
+            randomValue -= reward;
         }
-        threshold -= invertedWeights[i];
-    }
 
-    if (selectedItem) {
+        // Find the selected item by name and set its background image
+        const selectedItem = blockColors.find(item => item.name === selectedName);
         item.style.backgroundImage = `url(${selectedItem.url})`;
         item.dataset.name = selectedItem.name;
     }
@@ -1955,18 +1955,44 @@ function startRoulette() {
     populateInitialItems(50); 
 
     function animate() {
-        const now = Date.now();
-        const delta = now - lastFrameTime;
-        lastFrameTime = now;
+    const now = Date.now();
+    const delta = now - lastFrameTime;
+    lastFrameTime = now;
 
-        currentPosition -= delta * 0.2; 
-        itemsContainer.style.transform = `translateX(${currentPosition}px)`;
+    currentPosition -= delta * 0.3; // Original speed maintained
+    itemsContainer.style.transform = `translateX(${currentPosition}px)`;
 
-        if (isRunning) {
-            requestAnimationFrame(animate);
-        }
+    recycleItemsIfNeeded();
+
+    if (isRunning) {
+        requestAnimationFrame(animate);
     }
+}
 
+function recycleItemsIfNeeded() {
+    // Assuming each item has a fixed width of 100px
+    const itemWidth = 100;
+    const containerWidth = itemsContainer.offsetWidth;
+
+    // Calculate the number of items that can fit within the view at any given time
+    const visibleItemCount = Math.ceil(window.innerWidth / itemWidth);
+    
+    // Calculate how far the items have moved (in terms of item count)
+    const movedItemCount = Math.floor(-currentPosition / itemWidth);
+    
+    // If items have moved enough to recycle
+    if (movedItemCount > 0) {
+        for (let i = 0; i < movedItemCount; i++) {
+            // Move the first item to the end
+            const firstItem = itemsContainer.removeChild(itemsContainer.firstChild);
+            itemsContainer.appendChild(firstItem);
+        }
+        
+        // Adjust currentPosition to account for the recycled items
+        currentPosition += movedItemCount * itemWidth;
+        itemsContainer.style.transform = `translateX(${currentPosition}px)`;
+    }
+}
     requestAnimationFrame(animate);
 
 

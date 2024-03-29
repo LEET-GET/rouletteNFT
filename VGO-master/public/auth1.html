@@ -32,7 +32,17 @@
               </form>
             </div>
           </div>
-          
+          <div id="userProfile">
+            <h2>User Profile</h2>
+            <div>Email: <span id="userEmail"></span></div>
+            <div>Username: <span id="userName"></span></div>
+            <div>Date Joined: <span id="userDateJoined"></span></div>
+            <div>First Name: <span id="userFirstName"></span></div>
+            <div>Last Name: <span id="userLastName"></span></div>
+            <div>Balance: <span id="userBalance"></span></div>
+            <button id="addBalanceBtn">Add +100 to Balance</button>
+        </div>
+        
     </body>
     <script>
         document.getElementById('registerBtn').addEventListener('click', function() {
@@ -52,7 +62,7 @@
       'Content-Type': 'application/json',
       'accept': 'application/json',
       // Update the CSRF token as per your requirement or manage it dynamically
-      'X-CSRFToken': 'hKsadXsj0BgdxLmCj0D6x91asoNZslZAo01hVPoUF68iOIiIqoVFRCjcmPBGGjyx'
+      'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4'
     },
     body: JSON.stringify(postData)
   };
@@ -78,7 +88,7 @@ document.getElementById('loginBtn').addEventListener('click', function() {
     headers: {
       'Content-Type': 'application/json',
       'accept': 'application/json',
-      'X-CSRFToken': '62odXoN6OfJpcSnnzeVmpiozvkLjFPjUdiXkFgJHtKButPjtGCdVJLGBpLz0TNSR'
+      'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4'
     },
     body: JSON.stringify(loginData)
   };
@@ -92,6 +102,7 @@ document.getElementById('loginBtn').addEventListener('click', function() {
     })
     .then(data => {
       console.log('Login Successful:', data);
+      fetchProfile(); // Call the function to fetch profile info on page load
       // Store tokens in localStorage or sessionStorage
       localStorage.setItem('refreshToken', data.refresh);
       localStorage.setItem('accessToken', data.access);
@@ -101,6 +112,52 @@ document.getElementById('loginBtn').addEventListener('click', function() {
       console.error('Error:', error);
     });
 });
+
+function fetchProfile() {
+    fetch('http://209.38.248.1:8001/user/profile/', {
+        method: 'GET',
+        headers: {
+            'accept': 'application/json',
+            'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4' // Replace with your CSRF token
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('userEmail').textContent = data.email;
+        document.getElementById('userName').textContent = data.username;
+        document.getElementById('userDateJoined').textContent = data.date_joined;
+        document.getElementById('userFirstName').textContent = data.first_name;
+        document.getElementById('userLastName').textContent = data.last_name;
+        document.getElementById('userBalance').textContent = data.bill ? data.bill.amount : '0.00';
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+fetchProfile(); // Call the function to fetch profile info on page load
+document.getElementById('addBalanceBtn').addEventListener('click', function() {
+    const currentBalance = parseFloat(document.getElementById('userBalance').textContent);
+    const updatedBalance = currentBalance + 100;
+
+    fetch('http://209.38.248.1:8001/user/profile/', {
+        method: 'PATCH',
+        headers: {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4' // Replace with your CSRF token
+        },
+        body: JSON.stringify({
+            bill: {
+                amount: updatedBalance.toString()
+            }
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('userBalance').textContent = updatedBalance.toFixed(2);
+    })
+    .catch(error => console.error('Error:', error));
+});
+
 
 
     </script>
