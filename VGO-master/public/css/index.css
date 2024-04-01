@@ -2,7 +2,7 @@
     background-color: #ffcc00;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
     .liveDivContainer {
       display: none;
     }
@@ -12,6 +12,7 @@
     .navbar.is-transparent a.navbar-item:hover {
         background-color: #ffcc00;
     }
+    
     }
 .body {
     background-color: #ffcc00;
