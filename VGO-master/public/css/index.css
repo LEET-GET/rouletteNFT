@@ -141,7 +141,10 @@
     
     #balanceDisplay {
         padding-top: 20px;
-        text-align: center;
+        text-align: right;
+        align-items: right;
+        left: 50px;
+        right: 50px;
     }
     #itemNameDisplay{
         text-align: center;
@@ -795,8 +798,8 @@
         border-radius: 25px;
         background-color: #ffcc00;
         transition: all 5s linear;
-        height: 500px;
-        width: 360px;
+        height: 700px;
+        width: 560px;
         z-index: 10;
     }
     
@@ -830,21 +833,21 @@
     
     .mainCaseTopImg {
         z-index: 10;
-        height: 300px;
-        width: 300px;
+        height: 400px;
+        width: 400px;
     }
     
     .mainCaseBottomImg {
         z-index: 5;
         filter: drop-shadow(2px 2px 2px black) blur(5px);
-        height: 305px;
-        width: 305px;
+        height: 405px;
+        width: 405px;
     }
     
     .mainOpenCaseButton {
         margin-top: 10px;
         height: 50px;
-        min-height: 50px;
+        min-height: 100px;
         width: 100%;
         font-family: 'stellar-light';
         font-size: 18px;
@@ -1116,7 +1119,7 @@
         margin-top: 25px;
         margin-left: 50px;
         margin-right: 50px;
-        margin-bottom: 500px;
+        margin-bottom: 100px;
         background-color: #1a1e24;
         box-shadow: inset 0px 0px 40px 0px black;
         height: 150px;
@@ -3056,7 +3059,7 @@
 }
 
 
-
+@media (min-width: 1301px) {
 @media screen and (min-width: 1088px) {
     .navbar.is-transparent a.navbar-item:hover {
         background-color: #ffcc00;
@@ -3188,7 +3191,12 @@ video {
 
 #balanceDisplay {
     padding-top: 20px;
-    text-align: center;
+    position: relative;
+    text-align: right;
+    align-items: right;
+    left: 100px;
+    right: 50px;
+    
 }
 #itemNameDisplay{
     text-align: center;
@@ -6116,4 +6124,4 @@ nav {
       button[type=submit]:hover {
         background-color: #45a049;
       }
-      
+    }
