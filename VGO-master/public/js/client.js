@@ -1234,7 +1234,7 @@ $('.inventory').on('click', function(){
 })
 
 $('.mainLogo').on('click', function(){
-    window.location.replace('http://aktagro.beget.tech/');
+    window.location.replace('http://mmplanet.ru/');
 })
 
 $('.signbutton1').on('click', function(){
@@ -1242,7 +1242,7 @@ $('.signbutton1').on('click', function(){
 })
 
 $('.mainLogo').on('click', function(){
-    window.location.replace('http://aktagro.beget.tech/');
+    window.location.replace('http://mmplanet.ru/');
 })
 
 $('#case1button').on('click', function(){
