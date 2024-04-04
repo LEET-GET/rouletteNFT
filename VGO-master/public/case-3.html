@@ -1916,7 +1916,7 @@ function createItem() {
     item.classList.add('item');
 
     // 90% chance to select the new common image
-    if (Math.random() < 0.9) {
+    if (Math.random() < 0) {
         item.style.backgroundImage = `url(${commonImageUrl})`;
         item.dataset.name = "Common Image";
     } else {
