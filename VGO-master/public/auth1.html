@@ -49,25 +49,24 @@
   const email = document.getElementById('registerEmail').value;
   const password = document.getElementById('registerPassword').value;
   
-  // Define the data to be sent
+  // data to be sent
   const postData = {
     email: email,
     password: password
   };
 
-  // Define the request options
+  // request options
   const requestOptions = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'accept': 'application/json',
-      // Update the CSRF token as per your requirement or manage it dynamically
       'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4'
     },
     body: JSON.stringify(postData)
   };
 
-  // Perform the fetch request
+  // fetch request
   fetch('http://209.38.248.1:8001/user/register/', requestOptions)
     .then(response => response.json())
     .then(data => console.log(data))
@@ -102,7 +101,7 @@ document.getElementById('loginBtn').addEventListener('click', function() {
     })
     .then(data => {
       console.log('Login Successful:', data);
-      fetchProfile(); // Call the function to fetch profile info on page load
+      fetchProfile(); // function to fetch profile info on page load
       // Store tokens in localStorage or sessionStorage
       localStorage.setItem('refreshToken', data.refresh);
       localStorage.setItem('accessToken', data.access);
@@ -118,7 +117,7 @@ function fetchProfile() {
         method: 'GET',
         headers: {
             'accept': 'application/json',
-            'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4' // Replace with your CSRF token
+            'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4'
         }
     })
     .then(response => response.json())
@@ -133,7 +132,7 @@ function fetchProfile() {
     .catch(error => console.error('Error:', error));
 }
 
-fetchProfile(); // Call the function to fetch profile info on page load
+fetchProfile(); // fetch profile info on page load
 document.getElementById('addBalanceBtn').addEventListener('click', function() {
     const currentBalance = parseFloat(document.getElementById('userBalance').textContent);
     const updatedBalance = currentBalance + 100;
