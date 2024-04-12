@@ -53,3 +53,40 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             alert('Login failed!');
         });
 });
+
+
+function fetchUserProfile() {
+    const accessToken = localStorage.getItem('accessToken'); // Retrieve the stored token
+    if (!accessToken) {
+        console.log('No access token found, please log in.');
+        return;
+    }
+
+    fetch('http://209.38.248.1:8001/user/profile/', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`, // Use the access token for authorization
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch profile');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Update UI with user data
+        document.getElementById('userEmail').textContent = data.email;
+        document.getElementById('userDateJoined').textContent = data.date_joined;
+        document.getElementById('balanceAmount').textContent = data.bill.amount; // Assuming 'bill' and 'amount' are returned by your API
+    })
+    .catch(error => {
+        console.error('Error fetching user profile:', error);
+    });
+}
+
+// Event listener for DOMContentLoaded to ensure the DOM is fully loaded before running the function
+document.addEventListener('DOMContentLoaded', function() {
+    fetchUserProfile(); // Call the function to fetch and display the user profile data
+});
