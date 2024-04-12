@@ -1817,14 +1817,14 @@ let intervalId, timeoutId;
 let balance = 1000; 
 const spinCost = 100;
 const rewards = {
-    'Vincent van Gogh 1': 0.35,
-    'Vincent van Gogh 2': 0.70,
-    'Vincent van Gogh 3': 0.25,
-    'Vincent van Gogh 4': 0.50,
-    'Vincent van Gogh 5': 0.70,
-    'Vincent van Gogh 6': 0.80,
-    'Vincent van Gogh 7': 1.80,
-    'Vincent van Gogh 8': 1.77,
+    'Vincent van Gogh 1': 0.3,
+    'Vincent van Gogh 2': 0.7,
+    'Vincent van Gogh 3': 0.2,
+    'Vincent van Gogh 4': 0.5,
+    'Vincent van Gogh 5': 0.7,
+    'Vincent van Gogh 6': 0.8,
+    'Vincent van Gogh 7': 1.8,
+    'Vincent van Gogh 8': 1.7,
 };
 
 const imageUrls = [
@@ -2104,6 +2104,11 @@ window.onclick = function(event) {
     }
 };
 
+function closeModal2() {
+
+    document.getElementById('itemModal').style.display = 'none';
+    document.querySelector('body').classList.remove('modal-show');
+}
 
 
 document.getElementById('closeModal').addEventListener('click', function() {

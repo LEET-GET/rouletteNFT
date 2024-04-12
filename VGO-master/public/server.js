@@ -234,6 +234,7 @@ function sellSelectedItem() {
     })
     .then(updatedData => {
         console.log('Bill updated successfully:', updatedData);
+        closeModal3();
         fetchUserProfile();  // Refresh user profile to update the balance display
     })
     .catch(error => {
@@ -242,7 +243,12 @@ function sellSelectedItem() {
     });
 }
 
-
+function closeModal3() {
+    const closeModalButton = document.getElementById('closeModal');
+    if (closeModalButton) {
+        closeModalButton.click();  // Programmatically click the close button
+    }
+}
 
 
 function addAmount(value) {
