@@ -1824,6 +1824,19 @@ window.onclick = function(event) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.getElementById('closeModal').addEventListener('click', function() {
     document.getElementById('itemModal').style.display = 'none';
     document.querySelector('body').classList.remove('modal-show');

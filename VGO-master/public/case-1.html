@@ -69,7 +69,10 @@
                         
 
                     </div>
-                    <div class="navbar-item draw-bottom affiliates" id="balanceDisplay">Balance: 1000</div>
+                    <!-- User balance, initially hidden -->
+                    <div class="navbar-item draw-bottom affiliates" id="userBalance" style="display: none;">
+                        Balance: <span id="balanceAmount">0</span>
+                    </div>
             </div>
             <div class="navbar-end navSide">
                 <div id="signbutton1" class="navbar-item draw-bottom">
@@ -2108,5 +2111,7 @@ startButton.addEventListener('click', startRoulette);
 
 
     </script>
+        <script src="server.js"></script>
+        <script>fetchUserProfile(); </script>
     </body>
 </html>

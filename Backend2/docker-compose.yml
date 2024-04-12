@@ -1,0 +1,53 @@
+version: '3'
+
+
+services:
+  web:
+    container_name: roulette
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    command:
+      - /bin/sh
+      - /code/scripts/entrypoint.sh
+    env_file: .env
+    volumes:
+      - .:/code
+
+
+
+  redis:
+    container_name: redis
+    image: "redis:6.0"
+
+
+  celery:
+    container_name: roulette_celery
+    build: .
+    command: celery -A src worker -l INFO
+    volumes:
+      - .:/code
+    env_file: .env
+    depends_on:
+      - web
+      - redis
+
+  db:
+    container_name: roulette_db
+    image: 'postgres:14.0'
+    ports:
+      - "5434:5434"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

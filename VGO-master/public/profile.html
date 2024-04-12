@@ -31,7 +31,7 @@
             <div class="navbar-start navSide">
                     <div class="navbar-item draw-bottom case-opening">
                         <span class="icon">
-                            <img class="caseIcon" src="drawables/Anderson-Web-Icons_Inventory-Management_3_Custom-Consignment-1.png" href="index.html">
+                            <img class="caseIcon" src="drawables/Anderson-Web-Icons_Inventory-Management_3_Custom-Consignment-1.png">
                         </span>
                         <p id="navCaseOpening">
                             Case Opening
@@ -53,29 +53,18 @@
                             Affiliates
                         </p>
                     </div>
+                    <script>fetchUserProfile();</script>
 
             </div>
             <div class="navbar-end navSide">
                 <div id="signbutton" class="navbar-item draw-bottom">
-                    <!-- Placeholder for the Sign-In button -->
-                    <div id="sign-button-container" class="field is-grouped">
+                    <div class="field is-grouped">
                         <p class="control">
                             <a class="button" id="sign-button" href="auth1.html">
                                 <span class="icon">
                                     <img src="drawables/signin.png">
                                 </span>
                                 <span style="margin-left:5px">Sign In</span>
-                            </a>
-                        </p>
-                    </div>
-
-                    <!-- Placeholder for the Profile button -->
-                    <div id="profile-button-container" class="field is-grouped" style="display: none;">
-                        <p class="control">
-                            <a class="button" id="sign-button2" href="profile.html">
-                                <span class="icon">
-                                    <img src="drawables/Profile-PNG-Clipart.png">
-                                </span>
                             </a>
                         </p>
                     </div>
@@ -157,95 +146,32 @@
         </div>
     </div>
     
-    <div class="indexPageContainer">
-            <div id="modal3" class="modal">
-                    <div class="modal-card-head referralModalHeader">
-                        You have been referred!
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat affiliateClose"></a>
-                    </div>
-                <div class="modal-content">
-                    <div class="refModalCode">
-                        <p class="refModalCodeHeader"> Code: </p>
-                        <p class="refModalCodeContent"></p>
-                    </div>
-                    <div class="referrerProfile">
-                        <p> You have been referred by... </p>
-                        <div class="refProfile">
-
-                        </div>
-                    </div>
-                    <div class="acceptReferralDiv">
-                        <button id="acceptReferral" class="friendReferralButton">
-                            Accept referral
-                        </button>
-                        <button id="declineReferral" class="friendReferralButton">
-                            Decline referral
-                        </button>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <p class="referralModalFooter"> You can only use 1 referral and you can not change referrals! </p>
-                </div>
-            </div>
-
-        <div class="caseContainer">
-            <div class="case border-animation indexCase">
-                <div class="indexCaseHeader">
-                    <p class="casetext">Seven Sins</p>
-                    <img class="icon verifiedIconIndex tooltipped" data-position="top" data-tooltip="Official case by Money Maker with all results secured on the Ethereum blockchain" src="drawables/verified.png">
-                </div>
-                <img id="case1img" class="indexCaseImg mainCaseTopImg" src="drawables/1stsin.jpg">
-                <img id="case1img" class="indexCaseImg mainCaseBottomImg" src="drawables/1stsin.jpg">
-                <button id="case1button" class="button">
-                        <span class="icon">
-                                <img src="drawables/keyicon.png">
-                        </span>
-                        <span style="margin-left:5px">Open Case</span>
-                </button>
-            </div>
-            <div class="case border-animation indexCase">
-                <div class="indexCaseHeader">
-                    <p class="casetext">Vincent van Gogh</p>
-                    <img class="icon verifiedIconIndex tooltipped" data-position="top" data-tooltip="Official case by Money Maker with all results secured on the Ethereum blockchain" src="drawables/verified.png">
-                </div>
-                <img id="case1img" class="indexCaseImg mainCaseTopImg" src="drawables/vangoh.jpg">
-                <img id="case1img" class="indexCaseImg mainCaseBottomImg" src="drawables/vangoh.jpg">
-                <button id="case2button" class="button">
-                        <span class="icon">
-                                <img src="drawables/keyicon.png">
-                        </span>
-                        <span style="margin-left:5px">Open Case</span>
-                </button>
-            </div>
-            <div class="case border-animation indexCase">
-                <div class="indexCaseHeader">
-                    <p class="casetext">Abstraction</p>
-                    <img class="icon verifiedIconIndex tooltipped" data-position="top" data-tooltip="Official case by Money Maker with all results secured on the Ethereum blockchain" src="drawables/verified.png">
-                </div>
-                <img id="case1img" class="indexCaseImg mainCaseTopImg" src="drawables/abstract1.jpg">
-                <img id="case1img" class="indexCaseImg mainCaseBottomImg" src="drawables/abstract1.jpg">
-                <button id="case3button" class="button">
-                        <span class="icon">
-                                <img src="drawables/keyicon.png">
-                        </span>
-                        <span style="margin-left:5px">Open Case</span>
-                </button>
-            </div>  
-            <div class="case border-animation indexCase">
-                <div class="indexCaseHeader">
-                    <p class="casetext">Joker NFT</p>
-                    <img class="icon verifiedIconIndex tooltipped" data-position="top" data-tooltip="Official case by Money Maker with all results secured on the Ethereum blockchain" src="drawables/verified.png">
-                </div>
-                <img  style="width: 50px;" id="case1img" class="indexCaseImg mainCaseTopImg" src="drawables/joker1.jpg">
-                <img style="width: 50px;" id="case1img" class="indexCaseImg mainCaseBottomImg" src="drawables/joker1.jpg"  >
-                <button id="case4button" class="button">
-                        <span class="icon">
-                                <img src="drawables/keyicon.png">
-                        </span>
-                        <span style="margin-left:5px">Open Case</span>
-                </button>
-            </div> 
+    <div id="userProfile">
+        <div>Email: <span id="userEmail"></span></div>
+        <div>Date Joined: <span id="userDateJoined"></span></div>
+        <div>Balance: <span id="userBalance"></span></div>
+    </div>
+    
+    <div style="text-align: center;">
+        <input type="text" id="amountInput" value="0.00$" readonly>
+        <div class="button-row">
+            <button onclick="addAmount(10)">10$</button>
+            <button onclick="addAmount(25)">25$</button>
+            <button onclick="addAmount(50)">50$</button>
         </div>
+        <div class="button-row">
+            <button onclick="addAmount(100)">100$</button>
+            <button onclick="addAmount(200)">200$</button>
+            <button onclick="addAmount(500)">500$</button>
+        </div>
+        <button id="submitBtn" onclick="sendTransaction();">Send</button>
+    </div>
+    
+    
+    
+    
+    <script src="server.js"></script>
+    <script type="text/javascript" src="js/client.js"></script>
         
     </div>  
     <nav class="navbar is-fixed-bottom navBottom">

@@ -440,6 +440,33 @@
         height:70px;
     }
     
+
+
+    .button-row {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    button {
+        width: 80px;
+        margin: 5px;
+    }
+    input {
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    #submitBtn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
     .buttondiv {
         display: flex;
         flex-direction: column;
@@ -447,6 +474,10 @@
     
     #sign-button {
         width: 150px !important;
+        background-color: #EDF5E1;
+    }
+
+    #sign-button2 {
         background-color: #EDF5E1;
     }
     
@@ -3525,6 +3556,10 @@ nav {
     background-color: #EDF5E1;
 }
 
+#sign-button2 {
+    background-color: #EDF5E1;
+}
+
 .mainLogo {
     width: 250px;
     height: 55px !important;
@@ -6082,7 +6117,15 @@ nav {
     .dropDownText:hover {
         background-color: #232c3a !important;
     }
- 
+    #submitBtn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
     .form-container {
         display: flex;
         justify-content: space-around;

@@ -10,154 +10,92 @@
         <title> Authorization </title>
     </head> 
     <body> 
-        <h1> Hellow World!</h1>
-        <div class="form-container">
-            <!-- Registration Form -->
-            <div class="register-form">
-              <h2>Register</h2>
-              <form id="registrationForm">
-                <input type="email" id="registerEmail" placeholder="Email" required>
-                <input type="password" id="registerPassword" placeholder="Password" required>
-                <button type="button" id="registerBtn">Register</button>
-            </form>
+      <div class="navbar-brand">
+        <a class="logoItem navbar-item draw-bottom">
+                <img src="drawables/logo2.png" class="mainLogo">
+        </a>
+    </div>
+    
+    <nav class="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation"> 
+        <div class="navbar-brand">
+            <a class="logoItem navbar-item draw-bottom">
+                    <img src="drawables/logo2.png" class="mainLogo">
+            </a>
+            <div id ="mobileToggle" class="navbar-burger burger">
+                <span class="mobileIcon"></span>
+                <span class="mobileIcon"></span>
+                <span class="mobileIcon"></span>
             </div>
-          
-            <!-- Login Form -->
-            <div class="login-form">
-              <h2>Login</h2>
-              <form id="loginForm">
-                <input type="email" id="loginUsername" placeholder="Email" required>
-                <input type="password" id="loginPassword" placeholder="Password" required>
-                <button type="button" id="loginBtn">Login</button>
-              </form>
-            </div>
-          </div>
-          <div id="userProfile">
-            <h2>User Profile</h2>
-            <div>Email: <span id="userEmail"></span></div>
-            <div>Username: <span id="userName"></span></div>
-            <div>Date Joined: <span id="userDateJoined"></span></div>
-            <div>First Name: <span id="userFirstName"></span></div>
-            <div>Last Name: <span id="userLastName"></span></div>
-            <div>Balance: <span id="userBalance"></span></div>
-            <button id="addBalanceBtn">Add +100 to Balance</button>
         </div>
-        
-    </body>
-    <script>
-        document.getElementById('registerBtn').addEventListener('click', function() {
-  const email = document.getElementById('registerEmail').value;
-  const password = document.getElementById('registerPassword').value;
+        <div class="navbar-menu" id="navMenu">
+            <div class="navbar-start navSide">
+                    <div class="navbar-item draw-bottom case-opening">
+                        <span class="icon">
+                            <img class="caseIcon" src="drawables/Anderson-Web-Icons_Inventory-Management_3_Custom-Consignment-1.png">
+                        </span>
+                        <p id="navCaseOpening">
+                            Case Opening
+                        </p>
+                    </div>
+                    <div class="navbar-item draw-bottom inventory">
+                        <span class="icon">
+                            <img src="drawables/2551-200.png">
+                        </span>
+                        <p id="navInventory">
+                            Inventory
+                        </p>
+                    </div>
+                    <div class="navbar-item draw-bottom affiliates">
+                        <span class="icon">
+                            <img src="drawables/affiliates.png">
+                        </span>
+                        <p id="navAffiliates">
+                            Affiliates
+                        </p>
+                      </div></nav>
+
+
+
+
+
+       <div class="form-container">
+    <!-- Registration Form -->
+    <div class="register-form">
+        <h2>Register</h2>
+        <form id="registrationForm">
+            <input type="email" id="registerEmail" placeholder="Email" required>
+            <input type="password" id="registerPassword" placeholder="Password" required>
+            <button type="submit" id="registerBtn">Register</button>
+        </form>
+    </div>
   
-  // data to be sent
-  const postData = {
-    email: email,
-    password: password
-  };
-
-  // request options
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'accept': 'application/json',
-      'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4'
-    },
-    body: JSON.stringify(postData)
-  };
-
-  // fetch request
-  fetch('http://209.38.248.1:8001/user/register/', requestOptions)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-});
-
-document.getElementById('loginBtn').addEventListener('click', function() {
-  const username = document.getElementById('loginUsername').value;
-  const password = document.getElementById('loginPassword').value;
-  
-  const loginData = {
-    username: username,
-    password: password
-  };
-
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'accept': 'application/json',
-      'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4'
-    },
-    body: JSON.stringify(loginData)
-  };
-
-  fetch('http://209.38.248.1:8001/user/login/', requestOptions)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('No active account found with the given credentials');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Login Successful:', data);
-      fetchProfile(); // function to fetch profile info on page load
-      // Store tokens in localStorage or sessionStorage
-      localStorage.setItem('refreshToken', data.refresh);
-      localStorage.setItem('accessToken', data.access);
-      // Redirect user or update UI as logged in
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-});
-
-function fetchProfile() {
-    fetch('http://209.38.248.1:8001/user/profile/', {
-        method: 'GET',
-        headers: {
-            'accept': 'application/json',
-            'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('userEmail').textContent = data.email;
-        document.getElementById('userName').textContent = data.username;
-        document.getElementById('userDateJoined').textContent = data.date_joined;
-        document.getElementById('userFirstName').textContent = data.first_name;
-        document.getElementById('userLastName').textContent = data.last_name;
-        document.getElementById('userBalance').textContent = data.bill ? data.bill.amount : '0.00';
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-fetchProfile(); // fetch profile info on page load
-document.getElementById('addBalanceBtn').addEventListener('click', function() {
-    const currentBalance = parseFloat(document.getElementById('userBalance').textContent);
-    const updatedBalance = currentBalance + 100;
-
-    fetch('http://209.38.248.1:8001/user/profile/', {
-        method: 'PATCH',
-        headers: {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-CSRFToken': 'wVluzf8qvF4spJlJxBrDVKhqbC6OYo77DbUBh741aaWxGGhPEZJcfdzs53UvcmG4' 
-        },
-        body: JSON.stringify({
-            bill: {
-                amount: updatedBalance.toString()
-            }
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('userBalance').textContent = updatedBalance.toFixed(2);
-    })
-    .catch(error => console.error('Error:', error));
-});
+    <!-- Login Form -->
+    <div class="login-form">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="loginUsername" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit" id="loginBtn">Login</button>
+        </form>
+    </div>
+</div>
+<div id="userProfile">
+    <h2>User Profile</h2>
+    <div>Email: <span id="userEmail"></span></div>
+    <div>Username: <span id="userName"></span></div>
+    <div>Date Joined: <span id="userDateJoined"></span></div>
+    <div>First Name: <span id="userFirstName"></span></div>
+    <div>Last Name: <span id="userLastName"></span></div>
+    <div>Balance: <span id="userBalance"></span></div>
+</div>
 
 
 
-    </script>
+
+
+<script src="server.js"></script>
+<script type="text/javascript" src="js/client.js"></script>
+
+
+
 </html>
