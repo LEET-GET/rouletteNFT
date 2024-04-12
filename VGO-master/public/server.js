@@ -1,5 +1,3 @@
-
-
 // Prevent form submission default action and handle registration
 document.getElementById('registrationForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -43,7 +41,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         localStorage.setItem('accessToken', data.access);
         console.log('Login successful, fetching profile...');
         fetchUserProfile(); // Fetch user profile immediately after successful login
-        window.location.href = 'http://127.0.0.1:5500/VGO-master/public/profile.html';
+        window.location.href = 'https://roulettenft.onrender.com/profile.html';
         fetchUserProfile(); 
     })
     .catch((error) => {
@@ -111,68 +109,4 @@ function fetchUserProfile() {
         console.error('Profile Fetch Error:', error);
     });
 }
-
-function addAmount(value) {
-    const input = document.getElementById('amountInput');
-    let currentValue = parseFloat(input.value.replace('$', ''));
-    currentValue += value;
-    input.value = currentValue.toFixed(2) + "$";
-}
-
-function sendTransaction() {
-    const accessToken = localStorage.getItem('accessToken');
-    const amount = parseFloat(document.getElementById('amountInput').value.replace('$', ''));
-    fetch('http://209.38.248.1:8001/payments/transaction/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        },
-        body: JSON.stringify({
-            amount: amount.toString(),
-            currency: "USD"
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Transaction successful:', data);
-        alert('Transaction submitted successfully! Redirecting...');
-        // Check if the response includes a message starting with "http"
-        if (data.message && data.message.startsWith("http")) {
-            window.location.href = data.message; // Redirect to the URL provided in the response
-        } else {
-            console.log('No valid URL received.');
-        }
-    })
-    .catch((error) => {
-        console.error('Transaction failed:', error);
-        alert('Error submitting transaction.');
-    });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
