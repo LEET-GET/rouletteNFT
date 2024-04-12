@@ -1,7 +1,7 @@
 // Wait for the entire document to load before attaching handlers
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
-    document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    document.getElementById('loginBtn').addEventListener('submit', handleLogin);
     updateNavBasedOnAuth();
 });
 
