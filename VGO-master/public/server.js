@@ -1,6 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    checkLoginStatusAndUpdateUI();
-});
+
 
 
 
@@ -211,7 +209,9 @@ function sendTransaction() {
         alert('Error submitting transaction.');
     });
 }
-
+document.addEventListener('DOMContentLoaded', function() {
+    checkLoginStatusAndUpdateUI();
+});
 
 document.getElementById('startButton').addEventListener('click', function() {
     deductOneDollar();
