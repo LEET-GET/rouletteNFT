@@ -72,13 +72,15 @@
                     <div class="navbar-item draw-bottom affiliates" id="userBalance">
                         Balance: <span id="balanceAmount">0$</span>
                     </div>
+                    <div class="navbar-item draw-bottom affiliates" id="balanceDisplay" style="display: none;">Balance: 9999999999999999999999</div>
                     
             </div>
             <div class="navbar-end navSide">
-                <div id="signbutton1" class="navbar-item draw-bottom">
-                    <div class="field is-grouped">
+                <div id="signbutton" class="navbar-item draw-bottom">
+                    <!-- Placeholder for the Sign-In button -->
+                    <div id="sign-button-container" class="field is-grouped">
                         <p class="control">
-                            <a class="button" id="sign-button" href="auth1.html">
+                            <a class="button" id="sign-button" href="http://127.0.0.1:5500/VGO-master/public/auth1.html">
                                 <span class="icon">
                                     <img src="drawables/signin.png">
                                 </span>
@@ -88,7 +90,7 @@
                     </div>
 
                     <!-- Placeholder for the Profile button -->
-                    <div id="profile-button-container" class="field is-grouped" style="display: none;">
+                    <div id="profile-button-container" class="field is-grouped">
                         <p class="control">
                             <a class="button" id="sign-button2" href="profile.html">
                                 <span class="icon">
@@ -1820,13 +1822,13 @@ let intervalId, timeoutId;
 let balance = 1000; 
 const spinCost = 100;
 const rewards = {
-    'Sin 1': 111,
-    'Sin 2': 1111,
-    'Sin 3': 333,
-    'Sin 4': 222,
-    'Sin 7': 99,
-    'Sin 6': 272,
-    'Sin 5': 171
+    'Sin 1': 1.11,
+    'Sin 2': 1.31,
+    'Sin 3': 0.33,
+    'Sin 4': 0.22,
+    'Sin 7': 0.79,
+    'Sin 6': 0.27,
+    'Sin 5': 0.17
 };
 
 const imageUrls = [
