@@ -20,7 +20,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
 
-    apiRequest('http://209.38.248.1:8001/user/register/', 'POST', { email: email, password: password })
+    apiRequest('https://209.38.248.1:8001/user/register/', 'POST', { email: email, password: password })
         .then(data => {
             console.log('Registration Success:', data);
             alert('Registration successful!');
@@ -39,7 +39,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    apiRequest('http://209.38.248.1:8001/user/login/', 'POST', { username: username, password: password })
+    apiRequest('https://209.38.248.1:8001/user/login/', 'POST', { username: username, password: password })
         .then(data => {
             console.log('Login Success:', data);
             alert('Login successful!');
