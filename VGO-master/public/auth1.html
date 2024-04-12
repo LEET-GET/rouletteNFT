@@ -1,14 +1,15 @@
 <html>
     <head>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/odometer@0.4.8/themes/odometer-theme-default.css" />
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/odometer@0.4.8/themes/odometer-theme-default.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <link href="drawables/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <link rel="stylesheet" href="css/index.css" type="text/css">  
-        <title> Authorization </title>
+        <title> Money Maker </title>
     </head> 
-    <body> 
+    <body>
       <div class="navbar-brand">
         <a class="logoItem navbar-item draw-bottom">
                 <img src="drawables/logo2.png" class="mainLogo">
@@ -35,7 +36,7 @@
                         <p id="navCaseOpening">
                             Case Opening
                         </p>
-                      </a>
+                    </a>
                     <div class="navbar-item draw-bottom inventory">
                         <span class="icon">
                             <img src="drawables/2551-200.png">
@@ -51,7 +52,101 @@
                         <p id="navAffiliates">
                             Affiliates
                         </p>
-                      </div></nav>
+                    </div>
+                    <div class="navbar-item draw-bottom affiliates" id="userBalance">
+                        Balance: <span id="balanceAmount">0$</span>
+                    </div>
+
+            </div>
+            <div class="navbar-end navSide">
+                <div id="signbutton" class="navbar-item draw-bottom">
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <a class="button" id="sign-button" href="http://127.0.0.1:5500/VGO-master/public/auth1.html">
+                                <span class="icon">
+                                    <img src="drawables/signin.png">
+                                </span>
+                                <span style="margin-left:5px">Sign In</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </nav>
+
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Browser Compatability</p>
+            <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            Just a reminder, our site is built for Chrome and Safari browsers ONLY!
+            If your browser is other than these 2 supported, you might encounter issues with the visability and usability of the site
+          </section>
+        </div>
+    </div>
+
+    <div class="sideContainer">
+        <div class="sideStats">
+            <div class="casesOpenedDiv">
+                <p class="casesOpenedCount odometer"></p>
+                <p class="casesOpenedHeader">Cases Opened</p>
+            </div>
+            <div class="unboxValueDiv">
+                <p class="valueSign">$</p>
+                <p class="unboxValueCount odometer "></p>
+                <p class="unboxValueHeader">Value of Unboxings</p>
+            </div>
+        </div>
+        
+        <div class="chatContainer">
+            <div class="msgFadeDiv">
+            </div>
+            <div id="chatBox">
+
+            </div>
+            <div class="chatUI">
+                <input class="input chatInput" placeholder="Type a message here..." type="text">
+                    <img class="sendMessageIcon chatButton" src="drawables/sendmessage.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="liveDivContainer">
+            <div class="liveContainerHeader">
+                <div class="liveUnboxings">
+                    <span class="btn-floating btn-large pulse">
+                        <i class="material-icons"></i>
+                    </span>
+                    <span class="liveItemsContainerHeader"> Live Unboxings </span>
+                </div>
+                <div class="switch">
+                    <label>
+                      Live Items
+                      <input class="switchCheck" type="checkbox">
+                      <span class="lever"></span>
+                      Top Items
+                    </label>
+                  </div>
+                </div>
+        <div class="liveContainer">
+            <div class="liveContainerTransition">
+
+            </div>
+            <div class="fadeDiv">
+            </div>
+            <div class="liveItemsContainer">
+
+            </div>
+        </div>
+        <div class="topItemsDiv">
+            <div class="TopItemsContainer">
+            </div>
+        </div>
+    </div>
 
 
 
@@ -90,12 +185,10 @@
 
 
 
-
-
-
 <script src="server.js"></script>
 
 <script type="text/javascript" src="js/client.js"></script>
+<script>fetchUserProfile(); </script>
 
 
 
