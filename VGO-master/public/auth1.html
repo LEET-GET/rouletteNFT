@@ -1,6 +1,10 @@
 <html>
     <head>
-
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/odometer@0.4.8/themes/odometer-theme-default.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <link href="drawables/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <link rel="stylesheet" href="css/index.css" type="text/css">  
         <title> Authorization </title>
@@ -88,102 +92,10 @@
 
 
 
-<script>
-  // Prevent form submission default action and handle registration
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-
-    fetch('http://209.38.248.1:8001/user/register/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email, password: password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Registration Success:', data);
-    })
-    .catch((error) => {
-        console.error('Registration Error:', error);
-    });
-});
-
-// Prevent form submission default action and handle login
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-
-    fetch('http://209.38.248.1:8001/user/login/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username: username, password: password })
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Login failed');
-        return response.json();
-    })
-    .then(data => {
-        localStorage.setItem('accessToken', data.access);
-        console.log('Login successful, fetching profile...');
-        fetchUserProfile(); // Fetch user profile immediately after successful login
-        window.location.href = 'https://roulettenft.onrender.com/profile.html';
-        fetchUserProfile(); 
-    })
-    .catch((error) => {
-        console.error('Login Error:', error);
-        
-    });
-});
-fetchUserProfile(); 
 
 
-
-
-
-
-
-function fetchUserProfile() {
-    const accessToken = localStorage.getItem('accessToken');
-    fetch('http://209.38.248.1:8001/user/profile/', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Failed to fetch profile');
-        return response.json();
-    })
-    .then(data => {
-        document.getElementById('userEmail').textContent = data.email;
-        document.getElementById('userName').textContent = data.username;
-        document.getElementById('userDateJoined').textContent = data.date_joined;
-        document.getElementById('userFirstName').textContent = data.first_name;
-        document.getElementById('userLastName').textContent = data.last_name;
-        document.getElementById('userBalance').textContent = data.bill.amount;
-    })
-    .then(data => {
-        const userBalance = document.getElementById('userBalance');
-        if (userBalance) {
-            userBalance.style.display = 'block';
-            userBalance.textContent = `Balance: ${data.bill.amount}`;
-        }
-    })
-    .catch((error) => {
-        console.error('Profile Fetch Error:', error);
-    });
-}
-
-
-</script>
 <script src="server.js"></script>
+
 <script type="text/javascript" src="js/client.js"></script>
 
 
