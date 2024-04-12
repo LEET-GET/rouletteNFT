@@ -2,13 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     checkLoginStatusAndUpdateUI();
 });
 
-document.getElementById('startButton').addEventListener('click', function() {
-    deductOneDollar();
-});
-
-document.getElementById('SellItem').addEventListener('click', function() {
-    sellSelectedItem();
-});
 
 
 function checkLoginStatusAndUpdateUI() {
@@ -119,7 +112,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     })
     .then(data => {
         localStorage.setItem('accessToken', data.access);
-        window.location.href = 'https://roulettenft.onrender.com/profile.html'; // Redirect to profile page
+        window.location.href = 'http://127.0.0.1:5500/VGO-master/public/profile.html'; // Redirect to profile page
     })
     .catch((error) => {
         console.error('Login Error:', error);
@@ -182,75 +175,6 @@ function deductOneDollar() {
 
 
 
-
-
-function sellSelectedItem() {
-    const selectedItemName = displayCenterItemName(); // Function that gets the name of the item at the center
-    const rewardValue = rewards[selectedItemName]; // Get the reward value from the 'rewards' object
-    
-    if (rewardValue === undefined) {
-        console.error('Selected item does not have a defined reward.');
-        alert('Error: Selected item does not have a defined reward.');
-        return;
-    }
-
-    const accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
-        alert('You are not logged in.');
-        return;
-    }
-
-    // First, fetch the current profile to get the latest balance
-    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/profile/', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Failed to fetch user profile');
-        return response.json();
-    })
-    .then(data => {
-        if (!data.bill || data.bill.amount === undefined) {
-            throw new Error("Balance information is missing");
-        }
-        // Calculate new balance by adding the reward value
-        const newBalance = parseFloat(data.bill.amount) + rewardValue;
-        // Send the updated balance to the server
-        return fetch('https://0c4e-5-34-4-112.ngrok-free.app/payments/bill/update/', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-            },
-            body: JSON.stringify({ amount: newBalance.toString() })
-        });
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Failed to update bill');
-        return response.json();
-    })
-    .then(updatedData => {
-        console.log('Bill updated successfully:', updatedData);
-        closeModal3();
-        fetchUserProfile();  // Refresh user profile to update the balance display
-    })
-    .catch(error => {
-        console.error('Failed to sell item:', error);
-        alert('Failed to sell item: ' + error.message);
-    });
-}
-
-function closeModal3() {
-    const closeModalButton = document.getElementById('closeModal');
-    if (closeModalButton) {
-        closeModalButton.click();  // Programmatically click the close button
-    }
-}
-
-
 function addAmount(value) {
     const input = document.getElementById('amountInput');
     let currentValue = parseFloat(input.value.replace('$', ''));
@@ -287,3 +211,8 @@ function sendTransaction() {
         alert('Error submitting transaction.');
     });
 }
+
+
+document.getElementById('startButton').addEventListener('click', function() {
+    deductOneDollar();
+});
