@@ -48,7 +48,11 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
     });
 });
-fetchUserProfile(); 
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch profile on initial load and set up refresh every 6 seconds
+    fetchUserProfile();
+    setInterval(fetchUserProfile, 6000);
+});
 
 
 
@@ -74,10 +78,20 @@ function updateNavBasedOnAuth(accessToken) {
         if (userBalance) userBalance.style.display = 'none';
     }
 }
-
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch profile on initial load and set up a periodic update
+    fetchUserProfile();
+    setInterval(fetchUserProfile, 5000); // Update profile every 5 seconds
+});
 
 function fetchUserProfile() {
     const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+        console.log('No access token found, skipping profile fetch.');
+        updateUIForLoggedOutUser();
+        return;
+    }
+
     fetch('http://209.38.248.1:8001/user/profile/', {
         method: 'GET',
         headers: {
@@ -89,25 +103,45 @@ function fetchUserProfile() {
         if (!response.ok) throw new Error('Failed to fetch profile');
         return response.json();
     })
-    .then(data => {
-        document.getElementById('userEmail').textContent = data.email;
-        document.getElementById('userName').textContent = data.username;
-        document.getElementById('userDateJoined').textContent = data.date_joined;
-        document.getElementById('userFirstName').textContent = data.first_name;
-        document.getElementById('userLastName').textContent = data.last_name;
-        document.getElementById('userBalance').textContent = data.bill.amount;
-    })
-    .then(data => {
-        const userBalance = document.getElementById('userBalance');
-        if (userBalance) {
-            userBalance.style.display = 'block';
-            userBalance.textContent = `Balance: ${data.bill.amount}`;
-        }
-    })
-    .catch((error) => {
+    .then(updateProfileUI)
+    .catch(error => {
         console.error('Profile Fetch Error:', error);
+        updateUIForLoggedOutUser();
     });
 }
+
+function updateProfileUI(data) {
+    const userEmailSpan = document.getElementById('userEmail');
+    const userNameSpan = document.getElementById('userName');
+    const userDateJoinedSpan = document.getElementById('userDateJoined');
+    const userFirstNameSpan = document.getElementById('userFirstName');
+    const userLastNameSpan = document.getElementById('userLastName');
+    const userBalanceSpan = document.getElementById('balanceAmount');
+
+    if (userEmailSpan) userEmailSpan.textContent = data.email || 'No email available';
+    if (userNameSpan) userNameSpan.textContent = data.username || 'No username available';
+    if (userDateJoinedSpan) userDateJoinedSpan.textContent = data.date_joined || 'No date joined available';
+    if (userFirstNameSpan) userFirstNameSpan.textContent = data.first_name || 'No first name available';
+    if (userLastNameSpan) userLastNameSpan.textContent = data.last_name || 'No last name available';
+    if (userBalanceSpan) userBalanceSpan.textContent = data.bill ? `${data.bill.amount}$` : '0$';
+}
+
+function updateUIForLoggedOutUser() {
+    const userElements = [document.getElementById('userEmail'), document.getElementById('userName'), document.getElementById('userDateJoined'), document.getElementById('userFirstName'), document.getElementById('userLastName'), document.getElementById('balanceAmount')];
+    userElements.forEach(elem => {
+        if (elem) elem.textContent = '';
+    });
+
+    const signInButton = document.getElementById('sign-button-container');
+    const profileButton = document.getElementById('profile-button-container');
+    const userBalanceDiv = document.getElementById('userBalance');
+
+    if (signInButton) signInButton.style.display = 'block';
+    if (profileButton) profileButton.style.display = 'none';
+    if (userBalanceDiv) userBalanceDiv.style.display = 'none'; // Hide balance if user is not logged in
+}
+
+
 
 function addAmount(value) {
     const input = document.getElementById('amountInput');
