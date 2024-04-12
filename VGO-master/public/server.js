@@ -1,36 +1,37 @@
-// Prevent form submission default action and handle registration
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
+// Wait for the entire document to load before attaching handlers
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('registrationForm').addEventListener('submit', handleRegistration);
+    document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    updateNavBasedOnAuth();
+});
+
+function handleRegistration(e) {
     e.preventDefault();
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
 
     fetch('http://209.38.248.1:8001/user/register/', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password })
     })
     .then(response => response.json())
     .then(data => {
         console.log('Registration Success:', data);
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Registration Error:', error);
     });
-});
+}
 
-// Prevent form submission default action and handle login
-document.getElementById('loginBtn').addEventListener('submit', function(e) {
+function handleLogin(e) {
     e.preventDefault();
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
     fetch('http://209.38.248.1:8001/user/login/', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: username, password: password })
     })
     .then(response => {
@@ -40,40 +41,29 @@ document.getElementById('loginBtn').addEventListener('submit', function(e) {
     .then(data => {
         localStorage.setItem('accessToken', data.access);
         console.log('Login successful, fetching profile...');
-        window.location.href = 'https://roulettenft.onrender.com/profile.html';
+        window.location.href = 'https://roulettenft.onrender.com/profile.html'; // Redirect after successful login
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Login Error:', error);
-        
     });
-});
-fetchUserProfile(); 
+}
 
-
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
+function updateNavBasedOnAuth() {
     const accessToken = localStorage.getItem('accessToken');
-    updateNavBasedOnAuth(accessToken);
-});
-
-function updateNavBasedOnAuth(accessToken) {
     const signInButton = document.getElementById('sign-button-container');
     const profileButton = document.getElementById('profile-button-container');
     const userBalance = document.getElementById('userBalance');
 
     if (accessToken) {
-        fetchUserProfile(); // Fetch and display user balance
         signInButton.style.display = 'none';
         profileButton.style.display = 'block';
+        fetchUserProfile();
     } else {
         signInButton.style.display = 'block';
         profileButton.style.display = 'none';
-        if (userBalance) userBalance.style.display = 'none';
+        userBalance.style.display = 'none';
     }
 }
-
 
 function fetchUserProfile() {
     const accessToken = localStorage.getItem('accessToken');
@@ -145,30 +135,5 @@ function sendTransaction() {
         alert('Error submitting transaction.');
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
