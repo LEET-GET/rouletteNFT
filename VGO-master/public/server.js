@@ -1,4 +1,3 @@
-
 // Helper function to handle API requests
 function apiRequest(url, method, data) {
     return fetch(url, {
@@ -34,6 +33,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
         });
 });
 
+// Handle login
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const username = document.getElementById('loginUsername').value;
@@ -53,4 +53,3 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             alert('Login failed!');
         });
 });
-
