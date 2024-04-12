@@ -1,7 +1,3 @@
-
-
-
-
 // Prevent form submission default action and handle registration
 document.getElementById('registrationForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -25,7 +21,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
 });
 
 // Prevent form submission default action and handle login
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginBtn').addEventListener('submit', function(e) {
     e.preventDefault();
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
@@ -44,9 +40,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     .then(data => {
         localStorage.setItem('accessToken', data.access);
         console.log('Login successful, fetching profile...');
-        fetchUserProfile(); // Fetch user profile immediately after successful login
         window.location.href = 'https://roulettenft.onrender.com/profile.html';
-        fetchUserProfile(); 
     })
     .catch((error) => {
         console.error('Login Error:', error);
