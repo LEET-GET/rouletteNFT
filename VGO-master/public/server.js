@@ -27,7 +27,7 @@ function fetchUserProfile() {
         return;
     }
 
-    fetch('http://209.38.248.1:8001/user/profile/', {
+    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -84,7 +84,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
 
-    fetch('http://209.38.248.1:8001/user/register/', {
+    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/register/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    fetch('http://209.38.248.1:8001/user/login/', {
+    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/login/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -119,7 +119,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     })
     .then(data => {
         localStorage.setItem('accessToken', data.access);
-        window.location.href = 'http://127.0.0.1:5500/VGO-master/public/profile.html'; // Redirect to profile page
+        window.location.href = 'https://roulettenft.onrender.com/profile.html'; // Redirect to profile page
     })
     .catch((error) => {
         console.error('Login Error:', error);
@@ -137,7 +137,7 @@ function deductOneDollar() {
     }
 
     // Fetch the current user profile to get the latest balance
-    fetch('http://209.38.248.1:8001/user/profile/', {
+    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -155,7 +155,7 @@ function deductOneDollar() {
         // Calculate new balance by deducting $1
         const newBalance = parseFloat(data.bill.amount) - 1;
         // Send the updated balance to the server
-        return fetch('http://209.38.248.1:8001/payments/bill/update/', {
+        return fetch('https://0c4e-5-34-4-112.ngrok-free.app/payments/bill/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -201,7 +201,7 @@ function sellSelectedItem() {
     }
 
     // First, fetch the current profile to get the latest balance
-    fetch('http://209.38.248.1:8001/user/profile/', {
+    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -219,7 +219,7 @@ function sellSelectedItem() {
         // Calculate new balance by adding the reward value
         const newBalance = parseFloat(data.bill.amount) + rewardValue;
         // Send the updated balance to the server
-        return fetch('http://209.38.248.1:8001/payments/bill/update/', {
+        return fetch('https://0c4e-5-34-4-112.ngrok-free.app/payments/bill/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -261,7 +261,7 @@ function addAmount(value) {
 function sendTransaction() {
     const accessToken = localStorage.getItem('accessToken');
     const amount = parseFloat(document.getElementById('amountInput').value.replace('$', ''));
-    fetch('http://209.38.248.1:8001/payments/transaction/', {
+    fetch('https://0c4e-5-34-4-112.ngrok-free.app/payments/transaction/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
