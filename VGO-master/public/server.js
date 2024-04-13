@@ -1,4 +1,6 @@
-
+document.addEventListener('DOMContentLoaded', function() {
+    checkLoginStatusAndUpdateUI();
+});
 
 
 
@@ -18,7 +20,7 @@ function fetchUserProfile() {
         return;
     }
 
-    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/profile/', {
+    fetch('http://209.38.248.1:8001/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -75,7 +77,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
 
-    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/register/', {
+    fetch('http://209.38.248.1:8001/user/register/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -97,7 +99,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/login/', {
+    fetch('http://209.38.248.1:8001/user/login/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -128,7 +130,7 @@ function deductOneDollar() {
     }
 
     // Fetch the current user profile to get the latest balance
-    fetch('https://0c4e-5-34-4-112.ngrok-free.app/user/profile/', {
+    fetch('http://209.38.248.1:8001/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -146,7 +148,7 @@ function deductOneDollar() {
         // Calculate new balance by deducting $1
         const newBalance = parseFloat(data.bill.amount) - 1;
         // Send the updated balance to the server
-        return fetch('https://0c4e-5-34-4-112.ngrok-free.app/payments/bill/update/', {
+        return fetch('http://209.38.248.1:8001/payments/bill/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -168,9 +170,69 @@ function deductOneDollar() {
         alert('Failed to deduct money: ' + error.message);
     });
 }
+function sellSelectedItem() {
+    const selectedItemName = displayCenterItemName(); // Function that gets the name of the item at the center
+    const rewardValue = rewards[selectedItemName]; // Get the reward value from the 'rewards' object
+    
+    if (rewardValue === undefined) {
+        console.error('Selected item does not have a defined reward.');
+        alert('Error: Selected item does not have a defined reward.');
+        return;
+    }
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+        alert('You are not logged in.');
+        return;
+    }
 
-
-
+    // First, fetch the current profile to get the latest balance
+    fetch('http://209.38.248.1:8001/user/profile/', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Failed to fetch user profile');
+        return response.json();
+    })
+    .then(data => {
+        if (!data.bill || data.bill.amount === undefined) {
+            throw new Error("Balance information is missing");
+        }
+        // Calculate new balance by adding the reward value
+        const newBalance = parseFloat(data.bill.amount) + rewardValue;
+        // Send the updated balance to the server
+        return fetch('http://209.38.248.1:8001/payments/bill/update/', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify({ amount: newBalance.toString() })
+        });
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Failed to update bill');
+        return response.json();
+    })
+    .then(updatedData => {
+        console.log('Bill updated successfully:', updatedData);
+        closeModal3();
+        fetchUserProfile();  // Refresh user profile to update the balance display
+    })
+    .catch(error => {
+        console.error('Failed to sell item:', error);
+        alert('Failed to sell item: ' + error.message);
+    });
+}
+function closeModal3() {
+    const closeModalButton = document.getElementById('closeModal');
+    if (closeModalButton) {
+        closeModalButton.click();  // Programmatically click the close button
+    }
+}
 
 
 function addAmount(value) {
@@ -183,7 +245,7 @@ function addAmount(value) {
 function sendTransaction() {
     const accessToken = localStorage.getItem('accessToken');
     const amount = parseFloat(document.getElementById('amountInput').value.replace('$', ''));
-    fetch('https://0c4e-5-34-4-112.ngrok-free.app/payments/transaction/', {
+    fetch('http://209.38.248.1:8001/payments/transaction/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -209,10 +271,11 @@ function sendTransaction() {
         alert('Error submitting transaction.');
     });
 }
-document.addEventListener('DOMContentLoaded', function() {
-    checkLoginStatusAndUpdateUI();
-});
+
 
 document.getElementById('startButton').addEventListener('click', function() {
     deductOneDollar();
+});
+document.getElementById('SellItem').addEventListener('click', function() {
+    sellSelectedItem();
 });
