@@ -1,16 +1,87 @@
 document.addEventListener('DOMContentLoaded', function() {
+    setupEventListeners();
     checkLoginStatusAndUpdateUI();
 });
 
+function setupEventListeners() {
+    const registrationForm = document.getElementById('registrationForm');
+    const loginForm = document.getElementById('loginForm');
+    const startButton = document.getElementById('startButton');
+    const sellItemButton = document.getElementById('SellItem');
 
+    if (registrationForm) registrationForm.addEventListener('submit', handleRegistration);
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+    if (startButton) startButton.addEventListener('click', deductOneDollar);
+    if (sellItemButton) sellItemButton.addEventListener('click', sellSelectedItem);
+}
+
+function handleRegistration(e) {
+    e.preventDefault();
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    registerUser(email, password);
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    loginUser(username, password);
+}
+
+function registerUser(email, password) {
+    fetch('http://209.38.248.1:8001/user/register/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email: email, password: password})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === "отправлено") {
+            // Success message handling
+            alert("Registration successful! Please check your email to confirm your account.");
+            console.log('Registration Success:', data);
+        } else if (data.email && data.email.length > 0) {
+            // Handling known error scenarios
+            alert(`Error: ${data.email[0]}`); // Displays the first error related to email
+            console.error('Registration Error:', data);
+        } else {
+            // Generic error handling if the error is not specific to email
+            alert("An error occurred during registration. Please try again.");
+            console.error('Registration Error:', data);
+        }
+    })
+    .catch(error => {
+        console.error('Registration Error:', error);
+        alert("Registration failed due to a network or server error.");
+    });
+}
+
+
+function loginUser(username, password) {
+    fetch('http://209.38.248.1:8001/user/login/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: username, password: password})
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Login failed');
+        return response.json();
+    })
+    .then(data => {
+        localStorage.setItem('accessToken', data.access);
+        window.location.href = 'http://127.0.0.1:5500/VGO-master/public/profile.html';
+    })
+    .catch(error => console.error('Login Error:', error));
+}
 
 function checkLoginStatusAndUpdateUI() {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
         fetchUserProfile();
-        setInterval(fetchUserProfile, 6000); // Update profile every 6 seconds
+        setInterval(fetchUserProfile, 6000);
     }
-    updateNavBasedOnAuth(); // This ensures UI is updated irrespective of the login status
+    updateNavBasedOnAuth();
 }
 
 function fetchUserProfile() {
@@ -33,11 +104,9 @@ function fetchUserProfile() {
     })
     .then(data => {
         updateProfileUI(data);
-        updateNavBasedOnAuth(); // Update navigation status based on successful profile fetch
+        updateNavBasedOnAuth();
     })
-    .catch(error => {
-        console.error('Profile Fetch Error:', error);
-    });
+    .catch(error => console.error('Profile Fetch Error:', error));
 }
 
 function updateProfileUI(data) {
@@ -56,7 +125,6 @@ function updateProfileUI(data) {
     if (userBalanceSpan) userBalanceSpan.textContent = data.bill ? `${data.bill.amount}$` : '0$';
 }
 
-
 function updateNavBasedOnAuth() {
     const accessToken = localStorage.getItem('accessToken');
     const signInButton = document.getElementById('sign-button-container');
@@ -70,57 +138,6 @@ function updateNavBasedOnAuth() {
         profileButton.style.display = 'none';
     }
 }
-
-// Registration Form
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-
-    fetch('http://209.38.248.1:8001/user/register/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email, password: password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Registration Success:', data);
-    })
-    .catch((error) => {
-        console.error('Registration Error:', error);
-    });
-});
-
-// Login Form
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-
-    fetch('http://209.38.248.1:8001/user/login/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username: username, password: password })
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Login failed');
-        return response.json();
-    })
-    .then(data => {
-        localStorage.setItem('accessToken', data.access);
-        window.location.href = 'http://127.0.0.1:5500/VGO-master/public/profile.html'; // Redirect to profile page
-    })
-    .catch((error) => {
-        console.error('Login Error:', error);
-    });
-});
-
-
-
 
 function deductOneDollar() {
     const accessToken = localStorage.getItem('accessToken');
@@ -170,6 +187,7 @@ function deductOneDollar() {
         alert('Failed to deduct money: ' + error.message);
     });
 }
+
 function sellSelectedItem() {
     const selectedItemName = displayCenterItemName(); // Function that gets the name of the item at the center
     const rewardValue = rewards[selectedItemName]; // Get the reward value from the 'rewards' object
@@ -227,13 +245,13 @@ function sellSelectedItem() {
         alert('Failed to sell item: ' + error.message);
     });
 }
+
 function closeModal3() {
     const closeModalButton = document.getElementById('closeModal');
     if (closeModalButton) {
         closeModalButton.click();  // Programmatically click the close button
     }
 }
-
 
 function addAmount(value) {
     const input = document.getElementById('amountInput');
@@ -271,11 +289,3 @@ function sendTransaction() {
         alert('Error submitting transaction.');
     });
 }
-
-
-document.getElementById('startButton').addEventListener('click', function() {
-    deductOneDollar();
-});
-document.getElementById('SellItem').addEventListener('click', function() {
-    sellSelectedItem();
-});
