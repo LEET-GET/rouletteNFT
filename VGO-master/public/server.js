@@ -28,9 +28,8 @@ function handleLogin(e) {
     const password = document.getElementById('loginPassword').value;
     loginUser(username, password);
 }
-
 function registerUser(email, password) {
-    fetch('http://209.38.248.1:8001/user/register/', {
+    fetch('https://78f4-46-34-193-65.ngrok-free.app/user/register/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email: email, password: password})
@@ -59,7 +58,7 @@ function registerUser(email, password) {
 
 
 function loginUser(username, password) {
-    fetch('http://209.38.248.1:8001/user/login/', {
+    fetch('https://78f4-46-34-193-65.ngrok-free.app/user/login/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: username, password: password})
@@ -91,7 +90,7 @@ function fetchUserProfile() {
         return;
     }
 
-    fetch('http://209.38.248.1:8001/user/profile/', {
+    fetch('https://78f4-46-34-193-65.ngrok-free.app/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -147,7 +146,7 @@ function deductOneDollar() {
     }
 
     // Fetch the current user profile to get the latest balance
-    fetch('http://209.38.248.1:8001/user/profile/', {
+    fetch('https://78f4-46-34-193-65.ngrok-free.app/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -165,7 +164,7 @@ function deductOneDollar() {
         // Calculate new balance by deducting $1
         const newBalance = parseFloat(data.bill.amount) - 1;
         // Send the updated balance to the server
-        return fetch('http://209.38.248.1:8001/payments/bill/update/', {
+        return fetch('https://78f4-46-34-193-65.ngrok-free.app/payments/bill/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -204,7 +203,7 @@ function sellSelectedItem() {
     }
 
     // First, fetch the current profile to get the latest balance
-    fetch('http://209.38.248.1:8001/user/profile/', {
+    fetch('https://78f4-46-34-193-65.ngrok-free.app/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -222,7 +221,7 @@ function sellSelectedItem() {
         // Calculate new balance by adding the reward value
         const newBalance = parseFloat(data.bill.amount) + rewardValue;
         // Send the updated balance to the server
-        return fetch('http://209.38.248.1:8001/payments/bill/update/', {
+        return fetch('https://78f4-46-34-193-65.ngrok-free.app/payments/bill/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -263,7 +262,7 @@ function addAmount(value) {
 function sendTransaction() {
     const accessToken = localStorage.getItem('accessToken');
     const amount = parseFloat(document.getElementById('amountInput').value.replace('$', ''));
-    fetch('http://209.38.248.1:8001/payments/transaction/', {
+    fetch('https://78f4-46-34-193-65.ngrok-free.app/payments/transaction/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
