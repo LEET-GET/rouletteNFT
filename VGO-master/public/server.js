@@ -69,7 +69,7 @@ function loginUser(username, password) {
     })
     .then(data => {
         localStorage.setItem('accessToken', data.access);
-        window.location.href = 'http://127.0.0.1:5500/VGO-master/public/profile.html';
+        window.location.href = 'https://roulettenft.onrender.com/profile.html';
     })
     .catch(error => console.error('Login Error:', error));
 }
