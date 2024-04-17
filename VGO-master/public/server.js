@@ -37,15 +37,12 @@ function registerUser(email, password) {
     .then(response => response.json())
     .then(data => {
         if (data.message === "отправлено") {
-            // Success message handling
             alert("Registration successful! Please check your email to confirm your account.");
             console.log('Registration Success:', data);
         } else if (data.email && data.email.length > 0) {
-            // Handling known error scenarios
-            alert(`Error: ${data.email[0]}`); // Displays the first error related to email
+            alert(`Error: ${data.email[0]}`); 
             console.error('Registration Error:', data);
         } else {
-            // Generic error handling if the error is not specific to email
             alert("An error occurred during registration. Please try again.");
             console.error('Registration Error:', data);
         }
@@ -145,7 +142,6 @@ function deductOneDollar() {
         return;
     }
 
-    // Fetch the current user profile to get the latest balance
     fetch('https://78f4-46-34-193-65.ngrok-free.app/user/profile/', {
         method: 'GET',
         headers: {
@@ -161,7 +157,7 @@ function deductOneDollar() {
         if (!data.bill || data.bill.amount === undefined) {
             throw new Error("Balance information is missing");
         }
-        // Calculate new balance by deducting $1
+        // new balance by deducting $1
         const newBalance = parseFloat(data.bill.amount) - 1;
         // Send the updated balance to the server
         return fetch('https://78f4-46-34-193-65.ngrok-free.app/payments/bill/update/', {
@@ -179,7 +175,7 @@ function deductOneDollar() {
     })
     .then(updatedData => {
         console.log('Bill updated successfully:', updatedData);
-        fetchUserProfile();  // Refresh user profile to update the balance display
+        fetchUserProfile();  
     })
     .catch(error => {
         console.error('Failed to deduct money:', error);
@@ -188,8 +184,8 @@ function deductOneDollar() {
 }
 
 function sellSelectedItem() {
-    const selectedItemName = displayCenterItemName(); // Function that gets the name of the item at the center
-    const rewardValue = rewards[selectedItemName]; // Get the reward value from the 'rewards' object
+    const selectedItemName = displayCenterItemName(); 
+    const rewardValue = rewards[selectedItemName]; 
     
     if (rewardValue === undefined) {
         console.error('Selected item does not have a defined reward.');
@@ -202,7 +198,6 @@ function sellSelectedItem() {
         return;
     }
 
-    // First, fetch the current profile to get the latest balance
     fetch('https://78f4-46-34-193-65.ngrok-free.app/user/profile/', {
         method: 'GET',
         headers: {
@@ -218,9 +213,7 @@ function sellSelectedItem() {
         if (!data.bill || data.bill.amount === undefined) {
             throw new Error("Balance information is missing");
         }
-        // Calculate new balance by adding the reward value
         const newBalance = parseFloat(data.bill.amount) + rewardValue;
-        // Send the updated balance to the server
         return fetch('https://78f4-46-34-193-65.ngrok-free.app/payments/bill/update/', {
             method: 'PUT',
             headers: {
@@ -237,7 +230,7 @@ function sellSelectedItem() {
     .then(updatedData => {
         console.log('Bill updated successfully:', updatedData);
         closeModal3();
-        fetchUserProfile();  // Refresh user profile to update the balance display
+        fetchUserProfile();  // Refresh user profile
     })
     .catch(error => {
         console.error('Failed to sell item:', error);
@@ -248,7 +241,7 @@ function sellSelectedItem() {
 function closeModal3() {
     const closeModalButton = document.getElementById('closeModal');
     if (closeModalButton) {
-        closeModalButton.click();  // Programmatically click the close button
+        closeModalButton.click();
     }
 }
 
