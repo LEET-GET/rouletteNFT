@@ -29,7 +29,7 @@ function handleLogin(e) {
     loginUser(username, password);
 }
 function registerUser(email, password) {
-    fetch('https://64.225.69.49:8000/user/register/', {
+    fetch('https://64.225.69.49/user/register/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({email: email, password: password})
@@ -55,7 +55,7 @@ function registerUser(email, password) {
 
 
 function loginUser(username, password) {
-    fetch('https://64.225.69.49:8000/user/login/', {
+    fetch('https://64.225.69.49/user/login/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: username, password: password})
@@ -87,7 +87,7 @@ function fetchUserProfile() {
         return;
     }
 
-    fetch('https://64.225.69.49:8000/user/profile/', {
+    fetch('https://64.225.69.49/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -142,7 +142,7 @@ function deductOneDollar() {
         return;
     }
 
-    fetch('https://64.225.69.49:8000/user/profile/', {
+    fetch('https://64.225.69.49/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -160,7 +160,7 @@ function deductOneDollar() {
         // new balance by deducting $1
         const newBalance = parseFloat(data.bill.amount) - 1;
         // Send the updated balance to the server
-        return fetch('https://64.225.69.49:8000/payments/bill/update/', {
+        return fetch('https://64.225.69.49/payments/bill/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ function sellSelectedItem() {
         return;
     }
 
-    fetch('https://64.225.69.49:8000/user/profile/', {
+    fetch('https://64.225.69.49/user/profile/', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`,
@@ -214,7 +214,7 @@ function sellSelectedItem() {
             throw new Error("Balance information is missing");
         }
         const newBalance = parseFloat(data.bill.amount) + rewardValue;
-        return fetch('https://64.225.69.49:8000/payments/bill/update/', {
+        return fetch('https://64.225.69.49/payments/bill/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -255,7 +255,7 @@ function addAmount(value) {
 function sendTransaction() {
     const accessToken = localStorage.getItem('accessToken');
     const amount = parseFloat(document.getElementById('amountInput').value.replace('$', ''));
-    fetch('https://64.225.69.49:8000/payments/transaction/', {
+    fetch('https://64.225.69.49/payments/transaction/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
