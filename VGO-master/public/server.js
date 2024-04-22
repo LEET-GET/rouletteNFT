@@ -303,7 +303,6 @@ function sendTransaction() {
             currency: "USD"
         })
     })
-    .then(handleFetchResponse)
     .then(response => response.json())
     .then(data => {
         console.log('Transaction successful:', data);
