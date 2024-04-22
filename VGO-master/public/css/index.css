@@ -34,7 +34,7 @@
         position:inherit;
         width: fit-content;
         height: fit-content;
-        right: 20vh;
+        right: 1vh;
         margin: 10% auto; /* 10% from the top and centered */
         padding: 20px;
         width: 40%; /* Could be more or less, depending on screen size */
