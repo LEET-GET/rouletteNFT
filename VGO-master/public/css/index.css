@@ -146,7 +146,7 @@
     }
     #roulette {
         width: auto;
-        height: 100px;
+        height: 300px;
         overflow: hidden;
         position: relative;
         border: 2px solid #000;
@@ -949,7 +949,7 @@
         height: 300px;
         position: absolute;
         bottom: 0px;
-        max-width: 150%;
+        max-width: 300%;
         padding-left: 25px;
     }
     
@@ -1157,30 +1157,30 @@
         margin-bottom: 100px;
         background-color: #1a1e24;
         box-shadow: inset 0px 0px 40px 0px black;
-        height: 150px;
+        height: 300px;
         flex: 1;
-        max-height: 150px;
-        min-height: 100px;
+        max-height: 300px;
+        min-height: 300px;
         
     }
     
     .rollContainer {
         transform: translateX(0px);
-        height: 150px;
+        height: 300px;
         transition: all 10s cubic-bezier(.15,.85,.08,1);
     }
     
     .rollDivItem {
-        width: 150px;
-        height: 150px;
+        width: 300px;
+        height: 300px;
         position: absolute;
         top: 0;
     }
     
     .rollDivItemImage {
         position: absolute;
-        width: 150px;
-        height: 150px;
+        width: 300px;
+        height: 300px;
         border-right: 1px solid #ffffff42;
         filter: drop-shadow(1px 1px 1px black) saturate(150%);
     }
@@ -1193,7 +1193,7 @@
     }
     
     .divider {
-        height: 150px;
+        height: 300px;
         position: absolute;
         width: 2px;
         background-color: #edf5e166;
