@@ -31,13 +31,11 @@
     }
     
     .modal-content {
-        position:inherit;
-        width: fit-content;
-        height: fit-content;
-        right: 1vh;
+        width: 70% !important;
+        position: inherit;
+        right: 12vh;
         margin: 10% auto; /* 10% from the top and centered */
         padding: 20px;
-        width: 40%; /* Could be more or less, depending on screen size */
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         background-color: #fefefe; /* White background for the content */
         text-align: center; /* Center the content */
@@ -827,6 +825,7 @@
     }
     
     .mainCase {
+        
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -2219,7 +2218,7 @@
         }
     
         .modal-content {
-            width: 100% !important;
+            width: 70% !important;
             padding: 0px !important;
             height: 100%;
             overflow: scroll;
@@ -3972,6 +3971,7 @@ nav {
     height: 500px;
     width: 360px;
     z-index: 10;
+
 }
 
 .mainCasePicture {
