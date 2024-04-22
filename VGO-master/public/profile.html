@@ -163,20 +163,19 @@
     <div id="userProfile">
         <div>Email: <span id="userEmail"></span></div>
         <div>Date Joined: <span id="userDateJoined"></span></div>
-        <div>Balance: <span id="userBalance"></span></div>
     </div>
     
     <div style="text-align: center;">
         <input type="text" id="amountInput" value="0.00$" oninput="validateAmountInput(this)" placeholder="Enter Amount">
         <div class="button-row">
-            <button onclick="addAmount(10)">10$</button>
-            <button onclick="addAmount(25)">25$</button>
-            <button onclick="addAmount(50)">50$</button>
+            <button id="submitBtn" onclick="addAmount(10)">10$</button>
+            <button id="submitBtn" onclick="addAmount(25)">25$</button>
+            <button id="submitBtn" onclick="addAmount(50)">50$</button>
         </div>
         <div class="button-row">
-            <button onclick="addAmount(100)">100$</button>
-            <button onclick="addAmount(200)">200$</button>
-            <button onclick="addAmount(500)">500$</button>
+            <button id="submitBtn" onclick="addAmount(100)">100$</button>
+            <button id="submitBtn" onclick="addAmount(200)">200$</button>
+            <button id="submitBtn" onclick="addAmount(500)">500$</button>
         </div>
         <button id="submitBtn" onclick="sendTransaction();">Update balance</button>
     </div>

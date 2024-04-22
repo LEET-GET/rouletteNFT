@@ -466,8 +466,8 @@
         margin-top: 20px;
         padding: 10px 20px;
         font-size: 16px;
-        background-color: blue;
-        color: white;
+        background-color: rgb(255, 204, 0);
+        color: rgb(0, 0, 0);
         border: none;
         cursor: pointer;
     }
@@ -3102,6 +3102,7 @@
           }
 
           #amountInput {
+            color: wheat;
             font-size: 16px;
             padding: 10px;
             width: 200px;
@@ -3114,6 +3115,9 @@
         
         #amountInput:focus {
             border-color: #0056b3;
+        }
+        #amountInput:hover {
+            border-color: #007bff;
         }
         
     
@@ -3185,6 +3189,7 @@
 }
 
 #amountInput {
+    color: wheat;
     font-size: 16px;
     padding: 10px;
     width: 200px;
@@ -3197,6 +3202,9 @@
 
 #amountInput:focus {
     border-color: #0056b3;
+}
+#amountInput:hover {
+    border-color: #007bff;
 }
 
 
@@ -3407,6 +3415,8 @@ html {
     font-size: 18px;
     padding-top: 50px;
 }
+
+
 
 
 .liveDivContainer {
@@ -6179,10 +6189,14 @@ nav {
         margin-top: 20px;
         padding: 10px 20px;
         font-size: 16px;
-        background-color: blue;
-        color: white;
+        background-color: rgb(255, 204, 0);
+        color: black;
         border: none;
         cursor: pointer;
+    }
+
+    #submitBtn:hover {
+        background-color: #f8b722;
     }
     .form-container {
         display: flex;
