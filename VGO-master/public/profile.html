@@ -167,7 +167,7 @@
     </div>
     
     <div style="text-align: center;">
-        <input type="text" id="amountInput" value="0.00$" readonly>
+        <input type="text" id="amountInput" value="0.00$" oninput="validateAmountInput(this)" placeholder="Enter Amount">
         <div class="button-row">
             <button onclick="addAmount(10)">10$</button>
             <button onclick="addAmount(25)">25$</button>
@@ -178,7 +178,7 @@
             <button onclick="addAmount(200)">200$</button>
             <button onclick="addAmount(500)">500$</button>
         </div>
-        <button id="submitBtn" onclick="sendTransaction();">Send</button>
+        <button id="submitBtn" onclick="sendTransaction();">Update balance</button>
     </div>
     
     

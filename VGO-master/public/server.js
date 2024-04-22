@@ -28,6 +28,8 @@ function handleLogin(e) {
     const password = document.getElementById('loginPassword').value;
     loginUser(username, password);
 }
+
+
 function registerUser(email, password) {
     fetch('https://moneymaker-back.org/user/register/', {
         method: 'POST',
@@ -78,6 +80,22 @@ function checkLoginStatusAndUpdateUI() {
         setInterval(fetchUserProfile, 6000);
     }
     updateNavBasedOnAuth();
+}
+
+function handleFetchResponse(response) {
+    if (!response.ok) {
+        // Try to parse the response as JSON, then check for specific error message
+        response.json().then(data => {
+            if (data.detail === "Given token not valid for any token type") {
+                // Log out the user or redirect to login page
+                window.location.href = 'auth1.html';
+            }
+        }).catch(err => {
+            console.error('Error parsing response:', err);
+        });
+        throw new Error('Network response was not ok.');
+    }
+    return response.json();  // continue to process valid responses
 }
 
 function fetchUserProfile() {
@@ -162,6 +180,7 @@ function deductOneDollar() {
             'Content-Type': 'application/json'
         }
     })
+    
     .then(response => {
         if (!response.ok) throw new Error('Failed to fetch user profile');
         return response.json();
@@ -284,6 +303,7 @@ function sendTransaction() {
             currency: "USD"
         })
     })
+    .then(handleFetchResponse)
     .then(response => response.json())
     .then(data => {
         console.log('Transaction successful:', data);

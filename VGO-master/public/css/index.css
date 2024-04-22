@@ -3100,6 +3100,22 @@
           button[type=submit1]:hover {
             background-color: #14172a;
           }
+
+          #amountInput {
+            font-size: 16px;
+            padding: 10px;
+            width: 200px;
+            margin: 10px;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        #amountInput:focus {
+            border-color: #0056b3;
+        }
+        
     
           
   }
@@ -3167,6 +3183,22 @@
     padding: 0 10px;
     font-size: 20px;
 }
+
+#amountInput {
+    font-size: 16px;
+    padding: 10px;
+    width: 200px;
+    margin: 10px;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#amountInput:focus {
+    border-color: #0056b3;
+}
+
 
 /* Add this to your existing CSS for #roulette */
 #roulette, .pageContainer {
