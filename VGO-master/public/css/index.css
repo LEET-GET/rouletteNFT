@@ -11,12 +11,7 @@
     
     
     
-    @media screen and (min-width: 1088px) {
-        .navbar.is-transparent a.navbar-item:hover {
-            background-color: #ffcc00;
-        }
-        
-        }
+
     .body {
         background-color: #ffcc00;
         color: #ffcc00;
@@ -530,6 +525,10 @@
         border-bottom: #ffcc00 2px;
         border-bottom-style: inset;
         color: #ffcc00 !important;
+    }
+
+    .navbar-brand {
+        background-color: #1a1e25;
     }
     
     .navbar-brand a.navbar-item:hover {
@@ -1347,7 +1346,7 @@
     
       .indexPageContainer {
           position: absolute;
-          right: 200px;
+          right: 0px;
           left: 0%;
           height: calc(100% - 100px);
           display: flex;
@@ -3132,12 +3131,7 @@
 
 
 @media (min-width: 1301px) {
-@media screen and (min-width: 1088px) {
-    .navbar.is-transparent a.navbar-item:hover {
-        background-color: #ffcc00;
-    }
-    
-    }
+
 .body {
     background-color: #ffcc00;
     color: #ffcc00;
@@ -3668,6 +3662,9 @@ nav {
     border-bottom-style: inset;
     color: #ffcc00 !important;
 }
+
+
+
 
 .navbar-brand a.navbar-item:hover {
     background-color: #ffcc00;
