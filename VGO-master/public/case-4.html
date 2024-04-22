@@ -1995,27 +1995,40 @@ function createItem() {
 let lastFrameTime = Date.now();
 let currentPosition = 0;
 
+
+
+function getNumericBalance() {
+    const balanceSpan = document.getElementById('balanceAmount');
+    // Get the text content of the span and remove the dollar sign and any other non-numeric characters except the decimal point
+    const balanceText = balanceSpan.textContent.replace(/[^\d.-]/g, '');
+    return parseFloat(balanceText);
+}
+
 function startRoulette() {
-    if (isRunning || balance < spinCost) return;
-    balance -= spinCost; 
+    const balanceAmount = getNumericBalance();
+    console.log('start');
+    console.log(balanceAmount);
+    if (isRunning || balanceAmount < 1) {
+        console.log('Insufficient balance to start the roulette.');
+    } else if (balanceAmount >= 1){
+    balance -= spinCost;
     updateBalanceDisplay();
     isRunning = true;
-    populateInitialItems(50); 
+    populateInitialItems(50);
 
     function animate() {
-    const now = Date.now();
-    const delta = now - lastFrameTime;
-    lastFrameTime = now;
+        const now = Date.now();
+        const delta = now - lastFrameTime;
+        lastFrameTime = now;
 
-    currentPosition -= delta * 0.3; // Original speed maintained
-    itemsContainer.style.transform = `translateX(${currentPosition}px)`;
+        currentPosition -= delta * 0.3;
+        itemsContainer.style.transform = `translateX(${currentPosition}px)`;
+        recycleItemsIfNeeded();
 
-    recycleItemsIfNeeded();
-
-    if (isRunning) {
-        requestAnimationFrame(animate);
+        if (isRunning) {
+            requestAnimationFrame(animate);
+        }
     }
-}
 
 function recycleItemsIfNeeded() {
     // Assuming each item has a fixed width of 100px
@@ -2041,7 +2054,6 @@ function recycleItemsIfNeeded() {
         itemsContainer.style.transform = `translateX(${currentPosition}px)`;
     }
 }
-
     requestAnimationFrame(animate);
 
 
@@ -2049,7 +2061,7 @@ function recycleItemsIfNeeded() {
     setTimeout(() => {
         stopRoulette();
     }, stopTime);
-}
+} }
 
 function stopRoulette() {
     clearInterval(intervalId);

@@ -135,8 +135,21 @@ function updateNavBasedOnAuth() {
     }
 }
 
+function getNumericBalance() {
+    const balanceSpan = document.getElementById('balanceAmount');
+    // Get the text content of the span and remove the dollar sign and any other non-numeric characters except the decimal point
+    const balanceText = balanceSpan.textContent.replace(/[^\d.-]/g, '');
+    return parseFloat(balanceText);
+}
+
 function deductOneDollar() {
+    const balanceAmount = getNumericBalance();
     const accessToken = localStorage.getItem('accessToken');
+    console.log(balanceAmount);
+    if (balanceAmount < 1) {
+        console.log('Insufficient balance to start the roulette.');
+        return;
+    }
     if (!accessToken) {
         alert('You are not logged in.');
         return;
@@ -157,8 +170,10 @@ function deductOneDollar() {
         if (!data.bill || data.bill.amount === undefined) {
             throw new Error("Balance information is missing");
         }
-        // new balance by deducting $1
+        // Calculate new balance by deducting $1 and format to two decimal places
         const newBalance = parseFloat(data.bill.amount) - 1;
+        const formattedBalance = parseFloat(newBalance.toFixed(2)); // Format and parse to float
+
         // Send the updated balance to the server
         return fetch('https://moneymaker-back.org/payments/bill/update/', {
             method: 'PUT',
@@ -166,7 +181,7 @@ function deductOneDollar() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
             },
-            body: JSON.stringify({ amount: newBalance.toString() })
+            body: JSON.stringify({ amount: formattedBalance.toString() }) // Send as string
         });
     })
     .then(response => {
@@ -175,13 +190,14 @@ function deductOneDollar() {
     })
     .then(updatedData => {
         console.log('Bill updated successfully:', updatedData);
-        fetchUserProfile();  
+        fetchUserProfile(); // Refresh user profile
     })
     .catch(error => {
         console.error('Failed to deduct money:', error);
         alert('Failed to deduct money: ' + error.message);
     });
 }
+
 
 function sellSelectedItem() {
     const selectedItemName = displayCenterItemName(); 
@@ -214,13 +230,14 @@ function sellSelectedItem() {
             throw new Error("Balance information is missing");
         }
         const newBalance = parseFloat(data.bill.amount) + rewardValue;
+        // Using toFixed(2) to format to two decimal places and parsing it to float to ensure correct data type if needed
         return fetch('https://moneymaker-back.org/payments/bill/update/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${accessToken}`
             },
-            body: JSON.stringify({ amount: newBalance.toString() })
+            body: JSON.stringify({ amount: parseFloat(newBalance.toFixed(2)).toString() }) // Ensuring no trailing zeros
         });
     })
     .then(response => {
@@ -237,6 +254,7 @@ function sellSelectedItem() {
         alert('Failed to sell item: ' + error.message);
     });
 }
+
 
 function closeModal3() {
     const closeModalButton = document.getElementById('closeModal');

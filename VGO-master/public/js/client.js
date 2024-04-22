@@ -1262,7 +1262,7 @@ $('#case4button').on('click', function(){
 })
 
 $('.affiliates').on('click', function(){
-    window.location.replace('https://roulettenft.onrender.com/affiliates');
+    window.location.replace('https://roulettenft.onrender.com/profile');
 })
 
 $('.profileDiv').append(

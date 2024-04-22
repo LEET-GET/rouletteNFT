@@ -10,6 +10,7 @@
     
     
     
+    
     @media screen and (min-width: 1088px) {
         .navbar.is-transparent a.navbar-item:hover {
             background-color: #ffcc00;
@@ -450,6 +451,10 @@
     button {
         width: 80px;
         margin: 5px;
+    }
+    button.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
     input {
         text-align: center;
@@ -3080,6 +3085,22 @@
           button[type=submit]:hover {
             background-color: #45a049;
           }
+
+          button[type=submit1] {
+            width: 100%;
+            background-color: #14171a;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+          
+          button[type=submit1]:hover {
+            background-color: #14172a;
+          }
+    
           
   }
 
@@ -5800,7 +5821,12 @@ nav {
         border-radius: 20px;
         margin-right: 20px;
     }
-
+    
+    button.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
     .friendReferralButton {
         width: 200px;
         border-bottom: 3px solid #1f6148 !important;
