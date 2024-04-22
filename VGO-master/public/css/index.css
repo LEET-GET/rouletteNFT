@@ -33,7 +33,7 @@
     .modal-content {
         width: 70% !important;
         position: inherit;
-        right: 12vh;
+        right: 6vh;
         margin: 10% auto; /* 10% from the top and centered */
         padding: 20px;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
