@@ -3,6 +3,28 @@ document.addEventListener('DOMContentLoaded', function() {
     checkLoginStatusAndUpdateUI();
 });
 
+$('.mainLogo').on('click', function(){
+    window.location.replace('https://mmplanet.ru/');
+})
+
+$('.mainLogo').on('click', function(){
+    window.location.replace('https://mmplanet.ru/');
+})
+
+$('.mainLogo').on('click', function(){
+    window.location.replace('https://mmplanet.ru/');
+})
+$('.mainLogo').on('click', function(){
+    window.location.replace('https://mmplanet.ru/');
+})
+$('.mainLogo').on('click', function(){
+    window.location.replace('https://mmplanet.ru/');
+})
+$('.mainLogo').on('click', function(){
+    window.location.replace('https://mmplanet.ru/');
+})
+
+
 function setupEventListeners() {
     const registrationForm = document.getElementById('registrationForm');
     const loginForm = document.getElementById('loginForm');
@@ -318,3 +340,5 @@ function sendTransaction() {
         alert('Error submitting transaction.');
     });
 }
+
+

@@ -1233,17 +1233,11 @@ $('.inventory').on('click', function(){
     window.location.replace('https://roulettenft.onrender.com/inventory');
 })
 
-$('.mainLogo').on('click', function(){
-    window.location.replace('http://mmplanet.ru/');
-})
 
 $('.signbutton1').on('click', function(){
     window.location.replace('https://roulettenft.onrender.com/auth/fff');
 })
 
-$('.mainLogo').on('click', function(){
-    window.location.replace('http://mmplanet.ru/');
-})
 
 $('#case1button').on('click', function(){
     window.location.replace('https://roulettenft.onrender.com/case-1');
